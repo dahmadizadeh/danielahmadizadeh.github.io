@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simonlind.com</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <style>
+      @font-face {
+        font-family: "Erode-Variable";
+        src: url("fonts/Erode-Variable.woff2") format("woff2"),
+          url("fonts/Erode-Variable.woff") format("woff"),
+          url("fonts/Erode-Variable.ttf") format("truetype");
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Erode-VariableItalic";
+        src: url("../fonts/Erode-VariableItalic.woff2") format("woff2"),
+          url("../fonts/Erode-VariableItalic.woff") format("woff"),
+          url("../fonts/Erode-VariableItalic.ttf") format("truetype");
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: italic;
+      }
+
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        font-family: "Inter", sans-serif;
+
+        --hue: 195;
+        --saturation: 39%;
+        --text-lightness: 32%;
+        --background-lightness: 96%;
+
+        --text-color: hsl(
+          var(--hue),
+          var(--saturation),
+          var(--text-lightness),
+          1
+        );
+        --background-color: hsl(
+          var(--hue),
+          var(--saturation),
+          var(--background-lightness),
+          1
+        );
+        --mask-color: hsl(var(--hue), var(--saturation), 32%, 0.6);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --text-lightness: 96%;
+          --background-lightness: 8%;
+        }
+      }
+
+      body {
+        position: relative;
+        margin: 0;
+        padding: 4rem 2rem;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      #rangeSlider {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        opacity: 0;
+      }
+
+      .contentContainer {
+        width: 100%;
+        max-width: 35rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .profilepicContainer {
+        position: relative;
+      }
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 100%;
+      }
+
+      .mask {
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--mask-color);
+        mix-blend-mode: screen;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 100%;
+      }
+
+      .infoContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      ul {
+        padding-left: 0;
+        font-size: 0.875rem;
+        letter-spacing: -0.02em;
+      }
+
+      li {
+        list-style-type: none;
+        line-height: 1.25em;
+      }
+
+      .linkList {
+        display: flex;
+      }
+
+      .linkList li:not(:last-of-type):after {
+        content: "·";
+        margin: 0 0.25rem;
+      }
+
+      .linkList a {
+        font-weight: 500;
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px solid var(--text-color);
+      }
+
+      p {
+        font-family: "Erode-Variable";
+        font-weight: 400;
+        font-size: 1.25rem;
+        letter-spacing: -0.03em;
+      }
+
+      p strong {
+        font-weight: 600;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="range"
+      min="0"
+      max="360"
+      value="var(--hue)"
+      class="slider"
+      id="rangeSlider"
+    />
+    <div class="contentContainer">
+      <div class="profilepicContainer">
+        <img src="profilepic.jpg" alt="Profile picture of Simon Lind" />
+        <div class="mask"></div>
+      </div>
+      <div class="infoContainer">
+        <ul class="personList">
+          <li><strong>Simon Lind</strong></li>
+          <li>Software designer</li>
+          <li>Copenhagen, Denmark</li>
+        </ul>
+        <ul class="linkList">
+          <li><a href="mailto:simonlindhansen91@gmail.com">Email</a></li>
+          <li><a href="https://twitter.com/simonlind">Twitter</a></li>
+          <li><a href="https://dribbble.com/simonlind">Dribbble</a></li>
+          <li><a href="https://www.linkedin.com/in/simonlind/">LinkedIn</a></li>
+        </ul>
+      </div>
+      <p>
+        <strong>Hi, I’m Simon</strong> — a Copenhagen-based software designer. I
+        value good, digital craftsmanship when building products.
+      </p>
+      <p>
+        I co-founded Eduflow where I led all product and design. We sold Eduflow
+        to Multiverse in 2023 and that’s where I’m currently working as a Design
+        Lead.
+      </p>
+      <p>
+        When I’m not mulling over pixels, user stories and code I like to spend
+        my time in a pair of running shoes. I enjoy distance running, but these
+        days I’m mostly running after my 2-year-old to keep him out of trouble.
+      </p>
+    </div>
+  </body>
+  <script>
+    const rangeSlider = document.querySelector("#rangeSlider");
+
+    if (localStorage.getItem("--hue") != null) {
+      document.documentElement.style.setProperty(
+        "--hue",
+        localStorage.getItem("--hue")
+      );
+    }
+
+    rangeSlider.addEventListener("input", (e) => {
+      document.documentElement.style.setProperty("--hue", rangeSlider.value);
+      localStorage.setItem("--hue", rangeSlider.value);
+    });
+  </script>
+</html>
