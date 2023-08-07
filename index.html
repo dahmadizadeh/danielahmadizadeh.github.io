@@ -63,7 +63,7 @@
 
       @media (prefers-color-scheme: dark) {
         :root {
-          --text-lightness: 96%;
+          --text-lightness: 86%;
           --background-lightness: 10%;
         }
       }
@@ -71,7 +71,8 @@
       body {
         position: relative;
         margin: 0;
-        padding: 4rem 2rem;
+        padding-block: 2rem 4rem;
+        padding-inline: 2rem;
         color: var(--text-color);
         background-color: var(--background-color);
         box-sizing: border-box;
@@ -90,6 +91,25 @@
         height: 100vh;
         z-index: 0;
         opacity: 0;
+      }
+
+      #rangeSlider:focus-visible + .rangeSliderInstructions {
+        opacity: 1;
+      }
+
+      .rangeSliderInstructions {
+        font-size: 0.875rem;
+        position: fixed;
+        top: 3rem;
+        opacity: 0;
+      }
+
+      .rangeSliderInstructions span {
+        padding-inline: 0.25rem;
+        border-radius: 0.125rem;
+        margin-inline-end: 0.25rem;
+        background-color: var(--text-color);
+        color: var(--background-color);
       }
 
       .contentContainer {
@@ -122,12 +142,23 @@
 
       .infoContainer {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-block-end: 2rem;
+      }
+
+      @media only screen and (min-width: 510px) {
+        .infoContainer {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-block-end: 4rem;
+        }
       }
 
       ul {
         padding-left: 0;
+        margin-block: 1rem 0;
         font-size: 0.875rem;
         letter-spacing: -0.02em;
       }
@@ -154,16 +185,52 @@
         transition: all 150ms;
       }
 
+      .linkList a:focus-visible {
+        outline-offset: 2px;
+        outline: 2px solid var(--text-color);
+      }
+
       .linkList a:hover {
         color: var(--text-color-hover);
         border-bottom: 1px solid var(--text-color-hover);
       }
 
+      .copySuccessful {
+        position: fixed;
+        top: 0.5rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: var(--background-color);
+        background-color: var(--text-color);
+        padding-inline: 0.5rem;
+        padding-block: 0.25rem;
+        border-radius: 0.125rem;
+        transform: translateY(-1rem);
+        opacity: 0;
+        transition: all 250ms;
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .copySuccessful.visible {
+        opacity: 1;
+        transform: translateY(0.5rem);
+      }
+
+      a.copyEmailLink {
+        cursor: pointer;
+      }
+
       p {
         font-family: "Erode-Variable";
         font-weight: 400;
-        font-size: 1.25rem;
+        font-size: 1.125rem;
         letter-spacing: -0.03em;
+      }
+
+      @media only screen and (min-width: 510px) {
+        p {
+          font-size: 1.25rem;
+        }
       }
 
       p strong {
@@ -173,6 +240,9 @@
     </style>
   </head>
   <body>
+    <div class="copySuccessful">
+      Copied simonlindhansen91@gmail.com to clipboard
+    </div>
     <input
       type="range"
       min="0"
@@ -181,6 +251,9 @@
       class="slider"
       id="rangeSlider"
     />
+    <div class="rangeSliderInstructions">
+      <span><- -></span>Use arrow keys to control hue
+    </div>
     <div class="contentContainer">
       <div class="profilepicContainer">
         <img src="profilepic.jpg" alt="Profile picture of Simon Lind" />
@@ -194,16 +267,21 @@
         </ul>
         <ul class="linkList">
           <li>
-            <a
-              href="mailto:simonlindhansen91@gmail.com"
-              id="copy-email-link"
-              onclick="copyEmail()"
-              >Email</a
+            <a class="copyEmailLink" href="#" onclick="copyEmail()">Email</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/simonlind">Twitter</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://dribbble.com/simonlind"
+              >Dribbble</a
             >
           </li>
-          <li><a href="https://twitter.com/simonlind">Twitter</a></li>
-          <li><a href="https://dribbble.com/simonlind">Dribbble</a></li>
-          <li><a href="https://www.linkedin.com/in/simonlind/">LinkedIn</a></li>
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/in/simonlind/"
+              >LinkedIn</a
+            >
+          </li>
         </ul>
       </div>
       <p>
@@ -240,6 +318,11 @@
     function copyEmail() {
       // Copy the text inside the text field
       navigator.clipboard.writeText("simonlindhansen91@gmail.com");
+      document.querySelector(".copySuccessful").classList.add("visible");
+
+      setTimeout(() => {
+        document.querySelector(".copySuccessful").classList.remove("visible");
+      }, 6000);
     }
   </script>
 </html>
