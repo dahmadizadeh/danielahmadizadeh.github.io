@@ -71,16 +71,23 @@
       body {
         position: relative;
         margin: 0;
-        padding-block: 2rem 4rem;
+        padding-block-end: 2rem;
         padding-inline: 2rem;
         color: var(--text-color);
         background-color: var(--background-color);
         box-sizing: border-box;
-
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
         min-height: 100vh;
+      }
+
+      @media only screen and (min-width: 510px) {
+        body {
+          align-items: center;
+          padding-block: 2rem 4rem;
+          padding-inline: 2rem;
+        }
       }
 
       #rangeSlider {
@@ -227,6 +234,22 @@
         letter-spacing: -0.03em;
       }
 
+      p a {
+        text-decoration: none;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--text-color);
+      }
+
+      p a:hover {
+        color: var(--text-color-hover);
+        border-bottom: 1px solid var(--text-color-hover);
+      }
+
+      p a:focus-visible {
+        outline-offset: 2px;
+        outline: 2px solid var(--text-color);
+      }
+
       @media only screen and (min-width: 510px) {
         p {
           font-size: 1.25rem;
@@ -289,9 +312,11 @@
         value good, digital craftsmanship when building products.
       </p>
       <p>
-        I co-founded Eduflow where I led all product and design. We sold Eduflow
-        to Multiverse in 2023 and that’s where I’m currently working as a Design
-        Lead.
+        I co-founded
+        <a target="_blank" href="https://www.eduflow.com/">Eduflow</a> where I
+        led all product and design. We sold Eduflow to
+        <a target="_blank" href="https://multiverse.io/">Multiverse</a> in 2023
+        and that’s where I’m currently working as a Design Lead.
       </p>
       <p>
         When I’m not mulling over pixels, user stories and code I like to spend
