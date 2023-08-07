@@ -46,6 +46,12 @@
           var(--text-lightness),
           1
         );
+        --text-color-hover: hsl(
+          var(--hue),
+          var(--saturation),
+          calc(var(--text-lightness) - 20%),
+          1
+        );
         --background-color: hsl(
           var(--hue),
           var(--saturation),
@@ -58,7 +64,7 @@
       @media (prefers-color-scheme: dark) {
         :root {
           --text-lightness: 96%;
-          --background-lightness: 8%;
+          --background-lightness: 10%;
         }
       }
 
@@ -145,6 +151,12 @@
         color: var(--text-color);
         text-decoration: none;
         border-bottom: 1px solid var(--text-color);
+        transition: all 150ms;
+      }
+
+      .linkList a:hover {
+        color: var(--text-color-hover);
+        border-bottom: 1px solid var(--text-color-hover);
       }
 
       p {
@@ -181,7 +193,14 @@
           <li>Copenhagen, Denmark</li>
         </ul>
         <ul class="linkList">
-          <li><a href="mailto:simonlindhansen91@gmail.com">Email</a></li>
+          <li>
+            <a
+              href="mailto:simonlindhansen91@gmail.com"
+              id="copy-email-link"
+              onclick="copyEmail()"
+              >Email</a
+            >
+          </li>
           <li><a href="https://twitter.com/simonlind">Twitter</a></li>
           <li><a href="https://dribbble.com/simonlind">Dribbble</a></li>
           <li><a href="https://www.linkedin.com/in/simonlind/">LinkedIn</a></li>
@@ -217,5 +236,10 @@
       document.documentElement.style.setProperty("--hue", rangeSlider.value);
       localStorage.setItem("--hue", rangeSlider.value);
     });
+
+    function copyEmail() {
+      // Copy the text inside the text field
+      navigator.clipboard.writeText("simonlindhansen91@gmail.com");
+    }
   </script>
 </html>
