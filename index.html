@@ -119,6 +119,13 @@
         }
       }
 
+      label,
+      h1 {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+      }
+
       #rangeSlider {
         position: fixed;
         top: 0;
@@ -305,64 +312,71 @@
     <div class="copySuccessful">
       Copied simonlindhansen91@gmail.com to clipboard
     </div>
-    <input
-      type="range"
-      min="0"
-      max="360"
-      value="var(--hue)"
-      class="slider"
-      id="rangeSlider"
-    />
-    <div class="rangeSliderInstructions">
-      <span><- -></span>Use the arrow keys to control hue
-    </div>
-    <div class="contentContainer">
-      <div class="profilepicContainer">
-        <img src="profilepic.jpg" alt="Profile picture of Simon Lind" />
-        <div class="mask"></div>
+    <main>
+      <h1>Simon Lind's website. Copenhagen-based software designer.</h1>
+      <label for="rangeSlider">Hue slider</label>
+      <input
+        type="range"
+        min="0"
+        max="360"
+        value="var(--hue)"
+        class="slider"
+        id="rangeSlider"
+      />
+      <div class="rangeSliderInstructions">
+        <span><- -></span>Use the arrow keys to control hue
       </div>
-      <div class="infoContainer">
-        <ul class="personList">
-          <li><strong>Simon Lind</strong></li>
-          <li>Software designer</li>
-          <li>Copenhagen, Denmark</li>
-        </ul>
-        <ul class="linkList">
-          <li>
-            <a class="copyEmailLink" href="#" onclick="copyEmail()">Email</a>
-          </li>
-          <li>
-            <a target="_blank" href="https://twitter.com/simonlind">Twitter</a>
-          </li>
-          <li>
-            <a target="_blank" href="https://dribbble.com/simonlind"
-              >Dribbble</a
-            >
-          </li>
-          <li>
-            <a target="_blank" href="https://www.linkedin.com/in/simonlind/"
-              >LinkedIn</a
-            >
-          </li>
-        </ul>
+      <div class="contentContainer">
+        <div class="profilepicContainer">
+          <img src="profilepic.jpg" alt="Profile picture of Simon Lind" />
+          <div class="mask"></div>
+        </div>
+        <div class="infoContainer">
+          <ul class="personList">
+            <li><strong>Simon Lind</strong></li>
+            <li>Software designer</li>
+            <li>Copenhagen, Denmark</li>
+          </ul>
+          <ul class="linkList">
+            <li>
+              <a class="copyEmailLink" href="#" onclick="copyEmail()">Email</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://twitter.com/simonlind"
+                >Twitter</a
+              >
+            </li>
+            <li>
+              <a target="_blank" href="https://dribbble.com/simonlind"
+                >Dribbble</a
+              >
+            </li>
+            <li>
+              <a target="_blank" href="https://www.linkedin.com/in/simonlind/"
+                >LinkedIn</a
+              >
+            </li>
+          </ul>
+        </div>
+        <p>
+          <strong>Hi, I’m Simon</strong> — a Copenhagen-based software designer.
+          I value good, digital craftsmanship when building products.
+        </p>
+        <p>
+          I co-founded
+          <a target="_blank" href="https://www.eduflow.com/">Eduflow</a> where I
+          led all product and design. We sold Eduflow to
+          <a target="_blank" href="https://multiverse.io/">Multiverse</a> in
+          2023 and that’s where I’m currently working as a Design Lead.
+        </p>
+        <p>
+          When I’m not mulling over pixels, user stories and code I like to
+          spend my time in a pair of running shoes. I enjoy distance running,
+          but these days I’m mostly running after my 2-year-old to keep him out
+          of trouble.
+        </p>
       </div>
-      <p>
-        <strong>Hi, I’m Simon</strong> — a Copenhagen-based software designer. I
-        value good, digital craftsmanship when building products.
-      </p>
-      <p>
-        I co-founded
-        <a target="_blank" href="https://www.eduflow.com/">Eduflow</a> where I
-        led all product and design. We sold Eduflow to
-        <a target="_blank" href="https://multiverse.io/">Multiverse</a> in 2023
-        and that’s where I’m currently working as a Design Lead.
-      </p>
-      <p>
-        When I’m not mulling over pixels, user stories and code I like to spend
-        my time in a pair of running shoes. I enjoy distance running, but these
-        days I’m mostly running after my 2-year-old to keep him out of trouble.
-      </p>
-    </div>
+    </main>
   </body>
   <script>
     const rangeSlider = document.querySelector("#rangeSlider");
