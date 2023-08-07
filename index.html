@@ -199,9 +199,11 @@
         outline: 2px solid var(--text-color);
       }
 
-      .linkList a:hover {
-        color: var(--text-color-hover);
-        border-bottom: 1px solid var(--text-color-hover);
+      @media (-moz-touch-enabled: 0), (pointer: fine) {
+        .linkList a:hover {
+          color: var(--text-color-hover);
+          border-bottom: 1px solid var(--text-color-hover);
+        }
       }
 
       .copySuccessful {
@@ -242,9 +244,11 @@
         border-bottom: 1px solid var(--text-color);
       }
 
-      p a:hover {
-        color: var(--text-color-hover);
-        border-bottom: 1px solid var(--text-color-hover);
+      @media (-moz-touch-enabled: 0), (pointer: fine) {
+        p a:hover {
+          color: var(--text-color-hover);
+          border-bottom: 1px solid var(--text-color-hover);
+        }
       }
 
       p a:focus-visible {
