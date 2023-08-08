@@ -69,9 +69,6 @@
         --text-lightness: 32%;
         --background-lightness: 96%;
 
-        /* Accent color is the same irregardless of whether it's light or dark theme */
-        --accent-color: hsl(var(--hue), var(--saturation), 32%, 1);
-
         --text-color: hsl(
           var(--hue),
           var(--saturation),
@@ -387,7 +384,7 @@
   </body>
   <script>
     const rangeSlider = document.querySelector("#rangeSlider");
-    let accentColor;
+    let backgroundColor;
 
     // If localstorage is *not* empty, then...
     if (localStorage.getItem("--hue") != null) {
@@ -397,16 +394,30 @@
         localStorage.getItem("--hue")
       );
 
-      // update the accentColor variable to the same value as --accent-color
+      // update the accentColor variable to the same value as --background-color
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
           "content",
           getComputedStyle(document.documentElement).getPropertyValue(
-            "--accent-color"
+            "--background-color"
           )
         );
     }
+
+    // if the theme changes, update backgroundColor
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", ({ matches }) => {
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute(
+            "content",
+            getComputedStyle(document.documentElement).getPropertyValue(
+              "--background-color"
+            )
+          );
+      });
 
     // when the input of th range slider changes then...
     rangeSlider.addEventListener("input", (e) => {
@@ -416,9 +427,9 @@
       // and save the value of the range slider input in localstorage
       localStorage.setItem("--hue", rangeSlider.value);
 
-      // and update the accentColor variable
+      // and update the backgroundColor variable
       accentColor = getComputedStyle(document.documentElement).getPropertyValue(
-        "--accent-color"
+        "--background-color"
       );
 
       // and update the HTML meta tag that sets the browser theme-color
