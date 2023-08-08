@@ -140,6 +140,7 @@
 
       #rangeSlider:focus-visible + .rangeSliderInstructions {
         opacity: 1;
+        pointer-events: auto;
       }
 
       .rangeSliderInstructions {
@@ -150,6 +151,7 @@
         right: 0;
         text-align: center;
         opacity: 0;
+        pointer-events: none;
       }
 
       .rangeSliderInstructions span {
@@ -158,6 +160,12 @@
         margin-inline-end: 0.25rem;
         background-color: var(--text-color);
         color: var(--background-color);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 1.25rem;
       }
 
       .contentContainer {
@@ -262,11 +270,13 @@
         transform: translateY(-1rem);
         opacity: 0;
         transition: all 250ms;
+        pointer-events: none;
         transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .copySuccessful.visible {
         opacity: 1;
+        pointer-events: auto;
         transform: translateY(0.5rem);
       }
 
