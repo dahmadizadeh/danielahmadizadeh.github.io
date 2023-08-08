@@ -8,6 +8,7 @@
       name="description"
       content="Simon Lind · Copenhagen-based software designer"
     />
+    <meta name="theme-color" content="hsl(195, 39%, 32%, 1)" />
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://simonlind.com" />
@@ -67,6 +68,9 @@
         --saturation: 39%;
         --text-lightness: 32%;
         --background-lightness: 96%;
+
+        /* Accent color is the same irregardless of whether it's light or dark theme */
+        --accent-color: hsl(var(--hue), var(--saturation), 32%, 1);
 
         --text-color: hsl(
           var(--hue),
@@ -383,24 +387,55 @@
   </body>
   <script>
     const rangeSlider = document.querySelector("#rangeSlider");
+    let accentColor;
 
+    // If localstorage is *not* empty, then...
     if (localStorage.getItem("--hue") != null) {
+      // update the --hue variable in the DOM to the saved hue value in localstorage
       document.documentElement.style.setProperty(
         "--hue",
         localStorage.getItem("--hue")
       );
+
+      // update the accentColor variable to the same value as --accent-color
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--accent-color"
+          )
+        );
     }
 
+    // when the input of th range slider changes then...
     rangeSlider.addEventListener("input", (e) => {
+      // update the --hue variable to the value of the range slider
       document.documentElement.style.setProperty("--hue", rangeSlider.value);
+
+      // and save the value of the range slider input in localstorage
       localStorage.setItem("--hue", rangeSlider.value);
+
+      // and update the accentColor variable
+      accentColor = getComputedStyle(document.documentElement).getPropertyValue(
+        "--accent-color"
+      );
+
+      // and update the HTML meta tag that sets the browser theme-color
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", accentColor);
     });
 
+    // when the function runs then...
     function copyEmail() {
-      // Copy the text inside the text field
+      // copy the email address to clipboard
       navigator.clipboard.writeText("simonlindhansen91@gmail.com");
+
+      // and append a class that shows the success message
       document.querySelector(".copySuccessful").classList.add("visible");
 
+      // and remove the class again after 6s
       setTimeout(() => {
         document.querySelector(".copySuccessful").classList.remove("visible");
       }, 6000);
