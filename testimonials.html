@@ -1,1 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFK01CM5JK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-ZFK01CM5JK');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daniel Ahmadizadeh</title>
+    <meta
+      name="description"
+      content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher"
+    />
+    <meta name="theme-color" content="hsl(195, 39%, 32%, 1)" />
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://danielahmadizadeh.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Daniel Ahmadizadeh" />
+    <meta
+      property="og:description"
+      content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher"
+    />
+    <meta property="og:image" content="https://www.danielahmadizadeh.com/og.png" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="danielahmadizadeh.com" />
+    <meta property="twitter:url" content="https://danielahmadizadeh.com" />
+    <meta name="twitter:title" content="Daniel Ahmadizadeh" />
+    <meta
+      name="twitter:description"
+      content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher"
+    />
+    <meta name="twitter:image" content="https://www.danielahmadizadeh.com/og.png" />
+  </head>
+  <!-- ... rest of the page ... -->
+
+
+    <link rel="icon" type="image/x-icon" href="favicons/profileimg.png" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <style>
+      @font-face {
+        font-family: "Erode-Variable";
+        src: url("fonts/Erode-Variable.woff2") format("woff2"),
+          url("fonts/Erode-Variable.woff") format("woff"),
+          url("fonts/Erode-Variable.ttf") format("truetype");
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Erode-VariableItalic";
+        src: url("../fonts/Erode-VariableItalic.woff2") format("woff2"),
+          url("../fonts/Erode-VariableItalic.woff") format("woff"),
+          url("../fonts/Erode-VariableItalic.ttf") format("truetype");
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: italic;
+      }
+
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :root {
+        font-family: "Inter", sans-serif;
+
+        --hue: 195;
+        --saturation: 39%;
+        --text-lightness: 32%;
+        --background-lightness: 96%;
+
+        --text-color: hsl(
+          var(--hue),
+          var(--saturation),
+          var(--text-lightness),
+          1
+        );
+        --text-color-hover: hsl(
+          var(--hue),
+          var(--saturation),
+          calc(var(--text-lightness) - 20%),
+          1
+        );
+        --background-color: hsl(
+          var(--hue),
+          var(--saturation),
+          var(--background-lightness),
+          1
+        );
+        --mask-color: hsl(var(--hue), var(--saturation), 32%, 0.6);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --text-lightness: 86%;
+          --background-lightness: 10%;
+        }
+      }
+
+      body {
+        position: relative;
+        margin: 0;
+        padding-block: 2rem;
+        padding-inline: 2rem;
+        color: var(--text-color);
+        background-color: var(--background-color);
+        box-sizing: border-box;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+
+      @media only screen and (min-width: 510px) {
+        body {
+          align-items: center;
+          padding-block: 4rem;
+          padding-inline: 2rem;
+        }
+      }
+
+      label,
+      h1 {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      #rangeSlider {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        z-index: 0;
+        opacity: 0;
+      }
+
+      #rangeSlider:focus-visible + .rangeSliderInstructions {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .rangeSliderInstructions {
+        font-size: 0.875rem;
+        position: fixed;
+        top: 3rem;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .rangeSliderInstructions span {
+        padding-inline: 0.25rem;
+        border-radius: 0.125rem;
+        margin-inline-end: 0.25rem;
+        background-color: var(--text-color);
+        color: var(--background-color);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 1.25rem;
+      }
+
+      .contentContainer {
+        width: 100%;
+        max-width: 35rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .profilepicContainer {
+        position: relative;
+      }
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 100%;
+      }
+
+      .mask {
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--mask-color);
+        mix-blend-mode: screen;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 100%;
+      }
+
+      .infoContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-block-end: 2rem;
+      }
+
+      @media only screen and (min-width: 510px) {
+        .infoContainer {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-block-end: 4rem;
+        }
+      }
+
+      ul {
+        padding-left: 0;
+        margin-block: 1rem 0;
+        font-size: 0.875rem;
+        letter-spacing: -0.02em;
+      }
+
+      li {
+        list-style-type: none;
+        line-height: 1.25em;
+      }
+
+      .linkList {
+        display: flex;
+      }
+
+      .linkList li {
+        display: inline-flex;
+      }
+
+      .linkList li:not(:last-of-type):after {
+        content: "·";
+        margin: 0 0.25rem;
+      }
+
+      .linkList a {
+        font-weight: 500;
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px solid var(--text-color);
+        transition: all 150ms;
+      }
+
+      .linkList a:focus-visible {
+        outline-offset: 2px;
+        outline: 2px solid var(--text-color);
+      }
+
+      @media (-moz-touch-enabled: 0), (pointer: fine) {
+        .linkList a:hover {
+          color: var(--text-color-hover);
+          border-bottom: 1px solid var(--text-color-hover);
+        }
+      }
+
+      .copySuccessful {
+        position: fixed;
+        top: 0.5rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: var(--background-color);
+        background-color: var(--text-color);
+        padding-inline: 0.5rem;
+        padding-block: 0.25rem;
+        border-radius: 0.125rem;
+        transform: translateY(-1rem);
+        opacity: 0;
+        transition: all 250ms;
+        pointer-events: none;
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .copySuccessful.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0.5rem);
+      }
+
+      a.copyEmailLink {
+        cursor: pointer;
+      }
+
+      p {
+        font-family: "Erode-Variable";
+        font-weight: 400;
+        font-size: 1.125rem;
+        letter-spacing: -0.03em;
+      }
+
+      p a {
+        text-decoration: none;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--text-color);
+        transition: all 150ms;
+      }
+
+      @media (-moz-touch-enabled: 0), (pointer: fine) {
+        p a:hover {
+          color: var(--text-color-hover);
+          border-bottom: 1px solid var(--text-color-hover);
+        }
+      }
+
+      p a:focus-visible {
+        outline-offset: 2px;
+        outline: 2px solid var(--text-color);
+      }
+
+      @media only screen and (min-width: 510px) {
+        p {
+          font-size: 1.25rem;
+        }
+      }
+
+      p strong {
+        font-weight: 600;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="copySuccessful">
+      Copied daniel.ahmadizadeh@gmail.com to clipboard
+    </div>
+    <main>
+      <h1>Daniel Ahmadizadeh's website. Brooklyn-based startup founder and teacher.</h1>
+      <label for="rangeSlider">Hue slider</label>
+      <input
+        type="range"
+        min="0"
+        max="360"
+        value="var(--hue)"
+        class="slider"
+        id="rangeSlider"
+      />
+      <div class="rangeSliderInstructions">
+        <span><- -></span>Use the arrow keys to control hue
+      </div>
+      <div class="contentContainer">
+        <div class="profilepicContainer">
+          <img src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh" />
+          <div class="mask"></div>
+        </div>
+        <div class="infoContainer">
+          <ul class="personList">
+            <li><strong>Daniel Ahmadizadeh</strong></li>
+            <li>Startup founder and teacher</li>
+            <li>Brooklyn, NY</li>
+          </ul>
+          <ul class="linkList">
+            <li>
+              <a class="copyEmailLink" href="#" onclick="copyEmail()">Email</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://calendly.com/daniel-ahmadizadeh/20-min"
+                >Calendly</a
+              >
+            </li>
+            <li>
+              <a target="_blank" href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle"
+                >TED</a
+              >
+            </li> 
+            <li>
+              <a target="_blank" href="https://www.linkedin.com/in/danielahmadizadeh/"
+                >LinkedIn</a
+              >
+            </li>
+          </ul>
+        </div>
+        <p>
+          <strong>Hi, I’m Daniel </strong> — I was the CEO of two <a target="_blank" href="https://www.notion.so/dahmadizadeh/Y-Combinator-Projects-Investments-337b06ecc8134dba90516499e5712e66">Y Combinator-backed</a> startups and now work with startup founders at risk of shutting down their companies to change their trajectory. Additionally, I teach entrepreneurship at <a target="_blank" href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336"
+                >Columbia University</a> and Stanford University.
+
+
+        </p>
+        <p>
+          My framework, “Start With One,” focuses on solving a problem first for one person. One human being can be the microcosm of the entire market.
+
+
+        </p>
+        <p>
+          My life's work is to change the way entrepreneurship is taught. From idea-led to problem-led, from theoretical personas to actual human beings, “Start With One”-led entrepreneurship is a new way of thinking about venture creation. 
+
+        </p>
+        
+        <p>
+          Through this work, students solve a problem for at least one person in a matter of weeks, and founders go from the brink of shutting down to completely changing their trajectory. Case studies and testimonials can be found <a target="blank" href="https://www.notion.so/dahmadizadeh/Start-With-One-08d904bb937a4737859e6ddaabdf5a23"
+                >here.</a
+        </p>
+        
+        <p>
+          When I’m not working on startups, I enjoy <a target="_blank" href="https://www.notion.so/dahmadizadeh/Running-860f058f862d48b8bde1cafce5f131d0"
+                >running</a> and spending time with my family. Here are some of my <a target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373"
+                >values</a> and a preview of the <a target="_blank" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit"
+                >book</a> I’ll publish next year. Feel free to add comments to it directly!
+
+        </p>  
+
+
+      </div>
+    </main>
+  </body>
+  <script>
+    const rangeSlider = document.querySelector("#rangeSlider");
+    let backgroundColor;
+
+    // If localstorage is *not* empty, then...
+    if (localStorage.getItem("--hue") != null) {
+      // update the --hue variable in the DOM to the saved hue value in localstorage
+      document.documentElement.style.setProperty(
+        "--hue",
+        localStorage.getItem("--hue")
+      );
+
+      // update the accentColor variable to the same value as --background-color
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          getComputedStyle(document.documentElement).getPropertyValue(
+            "--background-color"
+          )
+        );
+    }
+
+    // if the theme changes, update backgroundColor
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", ({ matches }) => {
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute(
+            "content",
+            getComputedStyle(document.documentElement).getPropertyValue(
+              "--background-color"
+            )
+          );
+      });
+
+    // when the input of th range slider changes then...
+    rangeSlider.addEventListener("input", (e) => {
+      // update the --hue variable to the value of the range slider
+      document.documentElement.style.setProperty("--hue", rangeSlider.value);
+
+      // and save the value of the range slider input in localstorage
+      localStorage.setItem("--hue", rangeSlider.value);
+
+      // and update the backgroundColor variable
+      accentColor = getComputedStyle(document.documentElement).getPropertyValue(
+        "--background-color"
+      );
+
+      // and update the HTML meta tag that sets the browser theme-color
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", accentColor);
+    });
+
+    // when the function runs then...
+    function copyEmail() {
+      // copy the email address to clipboard
+      navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com");
+
+      // and append a class that shows the success message
+      document.querySelector(".copySuccessful").classList.add("visible");
+
+      // and remove the class again after 6s
+      setTimeout(() => {
+        document.querySelector(".copySuccessful").classList.remove("visible");
+      }, 6000);
+    }
+  </script>
+</html>
