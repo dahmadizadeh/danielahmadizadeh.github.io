@@ -6,7 +6,8 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date()); gtag('config','G-ZFK01CM5JK');
+    gtag('js', new Date());
+    gtag('config', 'G-ZFK01CM5JK');
   </script>
 
   <meta charset="utf-8" />
@@ -15,12 +16,14 @@
   <meta name="description" content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher" />
   <meta name="theme-color" content="hsl(195,39%,32%)" />
 
-  <!-- Open Graph / Twitter -->
+  <!-- Open Graph -->
   <meta property="og:url" content="https://danielahmadizadeh.com" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Daniel Ahmadizadeh" />
   <meta property="og:description" content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher" />
   <meta property="og:image" content="https://www.danielahmadizadeh.com/og.png" />
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="danielahmadizadeh.com" />
   <meta property="twitter:url" content="https://danielahmadizadeh.com" />
@@ -33,7 +36,7 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 
   <style>
-    /* Fonts */
+    /* ---------- Fonts ---------- */
     @font-face{
       font-family:"Erode-Variable";
       src:url("fonts/Erode-Variable.woff2") format("woff2"),
@@ -49,131 +52,162 @@
       font-weight:400 700; font-style:italic; font-display:swap;
     }
 
-    /* Theme */
+    /* ---------- Theme ---------- */
     :root{
-      --hue:195; --sat:39%;
-      --textL:32%; --bgL:96%;
-      --text: hsl(var(--hue),var(--sat),var(--textL));
-      --text-weak: hsl(var(--hue),var(--sat),calc(var(--textL) + 22%));
-      --text-hover: hsl(var(--hue),var(--sat),calc(var(--textL) - 18%));
-      --bg: hsl(var(--hue),var(--sat),var(--bgL));
-      --mask: hsl(var(--hue),var(--sat),32%,0.6);
+      --hue:195;
+      --sat:39%;
+      --textL:34%; /* slightly lighter */
+      --bgL:96%;
 
-      --maxw: 40rem;            /* tighter line length */
-      --pad: 24px;              /* page padding */
-      --gap: 14px;              /* header gaps */
-      --underline-offset: 3px;  /* link underline look */
-      --underline-thickness: 1px;
+      --text: hsl(var(--hue),var(--sat),var(--textL));
+      --text-weak: hsl(var(--hue),var(--sat),calc(var(--textL) + 28%));
+      --text-hover: hsl(var(--hue),var(--sat),calc(var(--textL) - 20%));
+      --bg: hsl(var(--hue),var(--sat),var(--bgL));
+      --mask: hsl(var(--hue),var(--sat),32%,0.52);
+
+      --maxw: 42rem;
     }
+
     @media (prefers-color-scheme:dark){
       :root{ --textL:86%; --bgL:10%; }
     }
 
-    /* Base */
-    *{ box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    /* ---------- Base ---------- */
+    *{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
       color:var(--text);
       background:var(--bg);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
-      display:flex; align-items:center; justify-content:center;
-      padding:var(--pad);
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:2.75rem 1.25rem;
     }
-    main{ width:100%; max-width:var(--maxw); }
-    h1,label{ position:absolute; left:-9999px; } /* a11y-only */
 
-    /* Header */
+    main{ width:100%; max-width:var(--maxw); }
+
+    h1,label{ position:absolute; left:-9999px; }
+
+    /* ---------- Header ---------- */
     .header{
       display:grid;
       grid-template-columns:auto 1fr;
-      gap: 12px var(--gap);
+      gap:1rem 1.25rem;
       align-items:end;
-      margin-bottom: 26px; /* tighter than before */
+      margin-bottom:2.25rem;
     }
-    @media (min-width:560px){
-      .header{ grid-template-columns:4rem 1fr; }
+
+    .avatarWrap{ position:relative; width:4rem; height:4rem; }
+    .avatar{
+      width:100%; height:100%; border-radius:50%; display:block;
     }
-    .avatarWrap{ position:relative; width:3.5rem; height:3.5rem; }
-    .avatar{ width:100%; height:100%; border-radius:50%; display:block; }
-    .avatarMask{ position:absolute; inset:0; border-radius:50%; background:var(--mask); mix-blend-mode:screen; pointer-events:none; }
+    .avatarMask{
+      position:absolute; inset:0; border-radius:50%;
+      background:var(--mask); mix-blend-mode:screen; pointer-events:none;
+    }
 
-    .who{ display:flex; flex-direction:column; gap:2px; }
-    .name{ font-weight:650; font-size:0.98rem; letter-spacing:-0.01em; }
-    .role,.location{ color:var(--text-weak); font-size:0.86rem; line-height:1.2; }
+    .name{ font-weight:600; font-size:1rem; }
+    .role, .location{
+      color:var(--text-weak); font-size:0.875rem;
+    }
 
+    /* ---------- Latest ---------- */
     .latest{
       font-family:"Erode-Variable";
       font-size:1.05rem;
       letter-spacing:-0.02em;
-      margin-top:6px;
-      display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-      white-space:nowrap;
+      margin-top:0.35rem;
+      display:flex; gap:0.35rem; flex-wrap:wrap; align-items:center;
     }
-    .latest .arrow{ font-size:1.05em; }
 
-    /* Links (nav & body) */
-    a{
-      color:inherit;
-      text-decoration:underline;
-      text-underline-offset:var(--underline-offset);
-      text-decoration-thickness:var(--underline-thickness);
-    }
-    a:hover{ color:var(--text-hover); }
-    a:focus-visible{ outline:2px solid currentColor; outline-offset:2px; border-radius:2px; }
-
+    /* ---------- CTA Links — Subtle ---------- */
     .links{
-      display:flex; flex-wrap:wrap;
-      gap: 6px 16px;            /* tightened spacing */
-      margin-top:10px;
+      display:flex; flex-wrap:wrap; gap:0.75rem 1rem;
+      margin-top:0.65rem;
     }
-    .links a{ font-weight:520; }
 
-    /* Body copy */
+    .links a{
+      font-weight:400;
+      opacity:0.65;
+      text-decoration:none;
+      transition:opacity .16s ease, color .16s ease;
+    }
+    .links a:hover{
+      opacity:1;
+      color:var(--text);
+      text-decoration:underline;
+      text-underline-offset:3px;
+      text-decoration-thickness:1px;
+    }
+
+    /* ---------- Section headers (non-bold) ---------- */
+    .sectionHeader{
+      font-family:"Erode-VariableItalic";
+      font-size:1.12rem;
+      font-weight:400;
+      font-style:italic;
+      letter-spacing:-0.015em;
+      margin:0.9rem 0;
+    }
+
+    /* ---------- Body copy ---------- */
     .copy p{
       font-family:"Erode-Variable";
-      font-size:1.0625rem;      /* ~17px */
-      line-height:1.58;         /* slightly tighter */
-      letter-spacing:-0.012em;
-      margin: 0.75rem 0;        /* tighter vertical rhythm */
+      font-size:1.125rem;
+      line-height:1.62;
+      letter-spacing:-0.02em;
+      margin:0.85rem 0;
     }
-    .copy strong{ font-weight:520; }  /* remove heavy bold */
-    .copy em{ font-family:"Erode-VariableItalic"; }
 
-    /* Hue slider + hint */
+    .copy a{
+      color:inherit;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      text-decoration-thickness:1px;
+    }
+    .copy a:hover{
+      color:var(--text-hover);
+    }
+
+    /* ---------- Hue interaction ---------- */
     #rangeSlider{ position:fixed; inset:0; opacity:0; }
+
     .hint{
-      position:fixed; top:10px; left:0; right:0;
-      text-align:center; font-size:0.84rem; opacity:0; transition:opacity .2s ease;
+      position:fixed; top:0.75rem; left:0; right:0; text-align:center;
+      font-size:0.85rem; opacity:0; transition:opacity .2s ease;
       pointer-events:none;
     }
     #rangeSlider:focus-visible + .hint{ opacity:1; }
     .hint kbd{
       background:var(--text); color:var(--bg);
-      padding:0 6px; border-radius:4px; font-family:inherit;
+      padding:0 0.4rem; border-radius:4px;
     }
 
-    /* Toast */
+    /* ---------- Toast ---------- */
     .toast{
-      position:fixed; top:12px; left:50%; transform:translate(-50%,-8px);
-      background:var(--text); color:var(--bg);
-      padding:6px 10px; border-radius:6px;
-      font-size:0.875rem; opacity:0; transition:all .22s cubic-bezier(.175,.885,.32,1.275);
+      position:fixed; top:0.75rem; left:50%; transform:translate(-50%,-1rem);
+      background:var(--text); color:var(--bg); padding:0.35rem 0.6rem;
+      border-radius:6px; font-size:0.875rem; opacity:0; transition:all .25s cubic-bezier(.175,.885,.32,1.275);
       pointer-events:none;
     }
     .toast.show{ opacity:1; transform:translate(-50%,0); }
+
   </style>
 </head>
+
 <body>
   <div class="toast" id="toast">Copied daniel.ahmadizadeh@gmail.com</div>
 
   <main>
-    <h1>Daniel Ahmadizadeh’s website</h1>
+    <h1>Daniel Ahmadizadeh Website</h1>
 
-    <!-- Accent control (kept invisible, a11y via keyboard) -->
+    <!-- click-to-change-color -->
     <input id="rangeSlider" type="range" min="0" max="360" value="var(--hue)" />
-    <div class="hint" aria-hidden="true"><kbd>←</kbd> <kbd>→</kbd> change accent</div>
+    <div class="hint"><kbd>←</kbd> <kbd>→</kbd> Change accent color</div>
 
+    <!-- header -->
     <section class="header">
       <div class="avatarWrap">
         <img class="avatar" src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh" />
@@ -181,61 +215,61 @@
       </div>
 
       <div>
-        <div class="who">
-          <div class="name">Daniel Ahmadizadeh</div>
-          <div class="role">Startup builder and teacher</div>
-          <div class="location">Brooklyn, NY</div>
-        </div>
+        <div class="name">Daniel Ahmadizadeh</div>
+        <div class="role">Startup builder and teacher</div>
+        <div class="location">Brooklyn, NY</div>
 
         <div class="latest">
-          <span class="arrow">→</span>
-          <span>Latest: Founder interview in</span>
-          <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one" target="_blank" rel="noopener noreferrer"><em>Mother of Success</em></a>
+          <span>→ Latest: Founder interview in</span>
+          <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one"
+             target="_blank"><em>Mother of Success</em></a>
         </div>
 
         <nav class="links" aria-label="Primary">
-          <a href="#" class="copyEmail" aria-label="Copy email address">Email</a>
-          <a href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle" target="_blank" rel="noopener noreferrer">TED</a>
-          <a href="https://www.linkedin.com/in/danielahmadizadeh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" target="_blank" rel="noopener noreferrer">Office&nbsp;Hour</a>
-          <a href="https://dahmadizadeh.notion.site/My-Stack-2830eeb2be60807abbefc8c413166663?source=copy_link" target="_blank" rel="noopener noreferrer">My&nbsp;Stack</a>
+          <a href="#" class="copyEmail">Email</a>
+          <a href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle" target="_blank">TED</a>
+          <a href="https://www.linkedin.com/in/danielahmadizadeh/" target="_blank">LinkedIn</a>
+          <a href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" target="_blank">Office Hour</a>
+          <a href="https://dahmadizadeh.notion.site/My-Stack-2830eeb2be60807abbefc8c413166663"
+             target="_blank">My Stack</a>
         </nav>
       </div>
     </section>
 
+    <!-- content -->
     <section class="copy">
-      <p><strong>Hi, I’m Daniel</strong> — I’m currently growing <a target="_blank" rel="noopener noreferrer" href="https://crustdata.com/">Crustdata</a>, a Y Combinator startup building the Google for AI agents. In 2025, we’ve grown from $700K to $5M ARR (as of October 30).</p>
 
-      <p>I also teach entrepreneurship at <a target="_blank" rel="noopener noreferrer" href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336">Columbia University</a> and <a target="_blank" rel="noopener noreferrer" href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b">Stanford University</a>. Over the last 10+ years I’ve been the CEO of two Y Combinator–backed startups. My expertise is getting new products launched and changing the trajectory of existing ones.</p>
+      <p class="sectionHeader">Hi, I’m Daniel — I’m currently growing <a href="https://crustdata.com/" target="_blank">Crustdata</a>, a Y Combinator startup building the Google for AI agents.</p>
 
-      <p>I have helped lead three companies to over $1M+ in annual recurring revenue and my work has been recognized in major publications like WSJ, The Today Show, and NPR. I’m honored to have been invited to speak on startups at Harvard, Princeton, and TED (where I was a <a target="_blank" rel="noopener noreferrer" href="https://www.ted.com/about/programs-initiatives/ted-residency">TED Resident</a>). Beyond building, I also angel invest and coach founders. I was the very first investor in Motion after their YC batch at seed, now a $550M company.</p>
+      <p>In 2025, we’ve grown from $700K to $5M ARR (as of October 30). I also teach entrepreneurship at <a href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336" target="_blank">Columbia University</a> and <a href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b" target="_blank">Stanford University</a>. Over the last 10+ years I’ve been the CEO of two Y Combinator–backed startups, helping launch new products and change the trajectory of existing ones.</p>
 
-      <p><strong>Why do I teach?</strong> My dream is to change the way entrepreneurship is taught around the world, shifting it from theoretical to practical. Over the last three years, I’ve taught 500+ students, and my hope is that each one leaves the classroom more confident to pursue not only their projects, but also their next steps in life.</p>
+      <p>I’ve helped lead three companies to over $1M+ ARR, and my work has been featured in WSJ, The Today Show, and NPR. I’ve spoken on startups at Harvard, Princeton, and TED (where I was a <a href="https://www.ted.com/about/programs-initiatives/ted-residency" target="_blank">TED Resident</a>). I angel invest and coach founders. I was the first investor in Motion after their YC batch; it is now a $550M company.</p>
 
-      <p>My framework, <a target="_blank" rel="noopener noreferrer" href="https://dahmadizadeh.notion.site/Start-With-One-08d904bb937a4737859e6ddaabdf5a23?pvs=4S">Start With One</a>, focuses on solving a problem first for one person, as they can be the microcosm of an entire market. It shifts entrepreneurship from idea-led to problem-led, transforming theoretical personas into actual human beings.</p>
+      <p class="sectionHeader">Why do I teach?</p>
 
-      <p>Start With One has guided students and founders to launch new ventures and measure their impact. See testimonials <a target="_blank" rel="noopener noreferrer" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe">here</a>. Join my weekly <a target="_blank" rel="noopener noreferrer" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour">Start With One office hours</a> to get live startup advice.</p>
+      <p>My mission is to change how entrepreneurship is taught globally — shifting it from theoretical to practical. In the last three years, I’ve taught 500+ students, helping them leave the classroom more confident not just in their projects, but in their lives.</p>
 
-      <p>When I’m not working on Crustdata, I love focusing on health goals and spending time with my family. I’m also a Columbia Business School alum. Here are some of my <a target="_blank" rel="noopener noreferrer" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373">values</a> and a preview of the <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit">book</a> I’ll publish next year. Feel free to add comments to it directly!</p>
+      <p>My framework, <a href="https://dahmadizadeh.notion.site/Start-With-One-08d904bb937a4737859e6ddaabdf5a23?pvs=4" target="_blank">Start With One</a>, focuses on solving a real problem for one real person as a microcosm of the entire market. It transforms entrepreneurship from idea-led to problem-led.</p>
+
+      <p>Start With One has guided founders to launch new ventures and measure their impact. Testimonials are <a href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe" target="_blank">here</a>. Join my weekly <a href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" target="_blank">office hours</a> for live startup support.</p>
+
+      <p>Outside Crustdata, I focus on health, family, and writing. I’m a Columbia Business School alum. Here are my <a href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373" target="_blank">values</a> and a preview of my upcoming <a href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit" target="_blank">book</a>. Feel free to add comments.</p>
+
     </section>
   </main>
 
   <script>
     const slider = document.getElementById('rangeSlider');
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const toast = document.getElementById('toast');
-    const emailLink = document.querySelector('.copyEmail');
 
     function updateThemeMeta(){
       const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
       metaTheme.setAttribute('content', bg);
     }
 
-    // Restore saved hue
     const saved = localStorage.getItem('--hue');
     if(saved){ document.documentElement.style.setProperty('--hue', saved); updateThemeMeta(); }
 
-    // Keyboard hue change
     slider.addEventListener('input', e=>{
       const v = e.target.value;
       document.documentElement.style.setProperty('--hue', v);
@@ -243,25 +277,23 @@
       updateThemeMeta();
     });
 
-    // Click anywhere to cycle hue (returns the fun you had)
-    document.addEventListener('click', (e)=>{
-      // ignore clicks on links/controls
-      const t = e.target.closest('a, button, input, textarea, select');
-      if(t) return;
-      const current = Number(getComputedStyle(document.documentElement).getPropertyValue('--hue').trim());
-      const next = (current + 12) % 360; // gentle step
-      document.documentElement.style.setProperty('--hue', next);
-      localStorage.setItem('--hue', next);
+    // click-to-change-color
+    document.body.addEventListener("click", () => {
+      const newHue = Math.floor(Math.random() * 360);
+      document.documentElement.style.setProperty("--hue", newHue);
+      localStorage.setItem("--hue", newHue);
       updateThemeMeta();
     });
 
-    // Copy email
-    emailLink.addEventListener('click', (e)=>{
+    // copy email
+    const toast = document.getElementById('toast');
+    document.querySelector('.copyEmail').addEventListener('click', (e)=>{
       e.preventDefault();
       navigator.clipboard.writeText('daniel.ahmadizadeh@gmail.com');
       toast.classList.add('show');
       setTimeout(()=>toast.classList.remove('show'), 2000);
     });
   </script>
+
 </body>
 </html>
