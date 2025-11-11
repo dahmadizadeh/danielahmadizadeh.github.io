@@ -83,7 +83,7 @@
       display:flex;
       justify-content:center;
       min-height:100vh;
-      cursor:pointer; /* enables “click to recolor” UX */
+      cursor:pointer; /* enables click-to-change-color */
     }
 
     main {
@@ -146,7 +146,7 @@
       gap:0.4rem;
     }
 
-    /* ---------- World-Class Minimal Links ---------- */
+    /* ---------- Links ---------- */
     .links{
       display:flex;
       flex-wrap:wrap;
@@ -234,7 +234,8 @@
   <!-- Body -->
   <section class="copy">
 
-    <p>I'm currently growing <a target="_blank" href="https://crustdata.com/" class="link">Crustdata</a>, a Y Combinator startup building the Google for AI agents. In 2025, we've grown from $700K to $5M ARR.</p>
+    <!-- ✅ NEW LINE WITH AUTO-UPDATING DATE -->
+    <p>I'm currently growing <a target="_blank" href="https://crustdata.com/" class="link">Crustdata</a>, a Y Combinator startup. In 2025, we've scaled from $700K to $5M ARR (as of <span id="arrDate"></span>).</p>
 
     <p>I've been the CEO of two Y Combinator–backed startups. I was also the first investor in Motion after their YC batch at seed — now a $550M company.</p>
 
@@ -250,26 +251,30 @@
 </main>
 
 <script>
-  /* Restore click-to-change-color */
+  /* CLICK TO CHANGE COLOR */
   document.body.addEventListener("click", function(e){
-    if (e.target.closest("a")) return; // don’t trigger when clicking links
-
+    if (e.target.closest("a")) return;
     const newHue = Math.floor(Math.random() * 360);
     document.documentElement.style.setProperty("--hue", newHue);
     localStorage.setItem("--hue", newHue);
   });
 
-  /* Load saved hue */
+  /* RESTORE HUE */
   const savedHue = localStorage.getItem("--hue");
   if (savedHue) {
     document.documentElement.style.setProperty("--hue", savedHue);
   }
 
-  /* Copy email */
+  /* COPY EMAIL */
   document.querySelector(".copyEmail").addEventListener("click", e=>{
     e.preventDefault();
     navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com");
   });
+
+  /* ✅ AUTO-UPDATE DATE (e.g., “November 11”) */
+  const now = new Date();
+  const options = { month: 'long', day: 'numeric' };
+  document.getElementById("arrDate").textContent = now.toLocaleDateString('en-US', options);
 </script>
 
 </body>
