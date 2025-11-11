@@ -6,24 +6,21 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-ZFK01CM5JK');
+    gtag('js', new Date()); gtag('config', 'G-ZFK01CM5JK');
   </script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Daniel Ahmadizadeh</title>
   <meta name="description" content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher" />
-  <meta name="theme-color" content="hsl(195,39%,32%)" />
+  <meta name="theme-color" content="hsl(195 39% 96%)" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:url" content="https://danielahmadizadeh.com" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Daniel Ahmadizadeh" />
   <meta property="og:description" content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher" />
   <meta property="og:image" content="https://www.danielahmadizadeh.com/og.png" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="danielahmadizadeh.com" />
   <meta property="twitter:url" content="https://danielahmadizadeh.com" />
@@ -56,179 +53,168 @@
     :root{
       --hue:195;
       --sat:39%;
-      --textL:32%;
       --bgL:96%;
+      --txtL:32%;
 
-      --text: hsl(var(--hue),var(--sat),var(--textL));
-      --text-weak: hsl(var(--hue),var(--sat),calc(var(--textL) + 22%));
-      --text-hover: hsl(var(--hue),var(--sat),calc(var(--textL) - 18%));
-      --bg: hsl(var(--hue),var(--sat),var(--bgL));
-      --mask: hsl(var(--hue),var(--sat),32%,0.55);
+      --bg: hsl(var(--hue) var(--sat) var(--bgL));
+      --txt: hsl(var(--hue) var(--sat) var(--txtL));
+      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 20%));
+      --txt-hover: hsl(var(--hue) var(--sat) calc(var(--txtL) - 18%));
+      --mask: hsl(var(--hue) var(--sat) 32% / .55);
+      --accent: hsl(var(--hue) var(--sat) calc(var(--txtL) - 12%));
 
       --maxw: 46rem;
-      --space: 1.1rem;
-      --radius: 999px;
-      --underline-offset: 3px;
-      --underline-thickness: 1px;
+      --gutter: 1.25rem;
+      --lead: 1.6;
+      --u-off: 3px;     /* underline offset */
+      --u-th: 1px;      /* underline thickness */
+      --hair: 0.5px;    /* hairline rule */
     }
     @media (prefers-color-scheme:dark){
-      :root{ --textL:86%; --bgL:10%; }
+      :root{ --bgL:10%; --txtL:86%; }
     }
 
     /* ---------- Base ---------- */
-    *{ box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    *{ box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     html,body{ height:100%; }
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
-      color:var(--text);
+      color:var(--txt);
       background:var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:2.5rem 1.25rem;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      display:flex; align-items:center; justify-content:center;
+      padding: 2.5rem 1.25rem;
     }
-    @media (min-width:560px){ body{ padding:4rem 1.5rem; } }
+    @media (min-width: 700px){ body{ padding: 4rem 1.5rem; } }
 
     main{ width:100%; max-width:var(--maxw); }
 
-    /* Hidden label/title for a11y */
-    h1,label{ position:absolute; left:-9999px; }
-
-    /* ---------- Top block ---------- */
-    .top{
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:.9rem 1.1rem;
-      align-items:end;
-      margin-bottom:1.75rem;
+    /* ---------- Header ---------- */
+    .card{
+      display:grid; grid-template-columns: 4rem 1fr;
+      gap: .75rem 1rem; align-items:end;
+      margin-bottom: 1.5rem;
     }
-    @media(min-width:560px){
-      .top{ grid-template-columns:4rem 1fr; gap:1rem 1.25rem; margin-bottom:2rem; }
-    }
+    @media (min-width:560px){ .card{ gap: .75rem 1.25rem; } }
 
-    .avatarWrap{ position:relative; width:3.75rem; height:3.75rem; }
-    .avatar{ width:100%; height:100%; border-radius:50%; display:block; }
-    .avatarMask{ position:absolute; inset:0; border-radius:50%; background:var(--mask); mix-blend-mode:screen; pointer-events:none; }
+    .avatarWrap{ position:relative; width:4rem; height:4rem; }
+    .avatar{ width:100%; height:100%; display:block; border-radius:50%; }
+    .mask{ position:absolute; inset:0; border-radius:50%; background:var(--mask); mix-blend-mode:screen; pointer-events:none; }
 
-    .who{ display:flex; flex-direction:column; gap:.15rem; }
-    .name{ font-weight:650; font-size:.98rem; letter-spacing:-0.01em; }
-    .role,.location{ color:var(--text-weak); font-size:.86rem; line-height:1.25; }
-
+    .meta{ line-height:1.2; }
+    .name{ font-weight:700; font-size:.98rem; letter-spacing:-0.01em; }
+    .role, .loc{ color:var(--txt-weak); font-size:.875rem; }
     .latest{
+      grid-column: 1 / -1;
+      display:flex; align-items:center; flex-wrap:wrap; gap:.5rem;
+      margin-top:.25rem; color:var(--txt-weak);
+      font-size:.925rem;
       font-family:"Erode-Variable";
-      font-size:1.02rem;
       letter-spacing:-0.01em;
-      margin-top:.35rem;
-      display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
-      white-space:nowrap;
-      color:var(--text);
     }
-    .latest .arrow{ margin-right:.05rem; }
+    .latest .arrow{ color:var(--txt); }
 
-    /* ---------- Nav (subtle CTAs) ---------- */
+    /* ---------- CTAs (Simon-inspired, subtle) ---------- */
     .links{
-      display:flex; flex-wrap:wrap; gap:.6rem 1rem;
-      margin-top:.65rem;
+      grid-column: 2 / -1;
+      display:flex; flex-wrap:wrap; gap:.6rem 1rem; margin-top:.15rem;
+      user-select:none;
     }
-    .links a{
-      font-weight:500;
-      color:var(--text);
-      text-decoration:none;
-      border-bottom:1px solid transparent;
-      padding-bottom:2px;
-      opacity:.85;
-      transition:opacity .15s ease, border-color .15s ease, color .15s ease;
+    .link{
+      position:relative; display:inline-block; padding-bottom:.2rem;
+      color:var(--txt); text-decoration:none; font-weight:500; font-size:.94rem;
     }
-    .links a:hover,
-    .links a:focus-visible{
-      opacity:1;
-      border-color:currentColor;
-      outline:none;
+    .link:after{
+      content:""; position:absolute; left:0; right:0; bottom:0;
+      height:var(--u-th); background: currentColor; opacity:.45;
+      transform:scaleY(.6);
+      transition: opacity .18s ease, transform .18s ease;
     }
+    .link:hover, .link:focus-visible{ color:var(--txt-hover); outline:none; }
+    .link:hover:after, .link:focus-visible:after{ opacity:1; transform:scaleY(1); }
 
-    /* ---------- Body copy ---------- */
-    .copy p{
+    /* ---------- Prose ---------- */
+    .prose{
       font-family:"Erode-Variable";
-      font-size:1.0625rem;   /* 17px */
-      line-height:1.64;
       letter-spacing:-0.012em;
-      margin:0 0: var(--space);
-      margin-bottom:1.05rem; /* tightened rhythm */
     }
-    @media(min-width:560px){
-      .copy p{ font-size:1.1rem; margin-bottom:1.05rem; }
+    .prose p{
+      margin: .85rem 0;
+      font-size:1.08rem;
+      line-height: var(--lead);
+      color: var(--txt);
     }
-    .copy a{
-      color:var(--text);
-      text-decoration:underline;
-      text-underline-offset:var(--underline-offset);
-      text-decoration-thickness:var(--underline-thickness);
-      transition:color .15s ease;
+    .prose em{ font-family:"Erode-VariableItalic"; }
+    .prose a{
+      color:inherit; text-decoration: underline;
+      text-underline-offset: var(--u-off);
+      text-decoration-thickness: var(--u-th);
     }
-    .copy a:hover,
-    .copy a:focus-visible{ color:var(--text-hover); outline:none; }
+    .prose a:hover{ color:var(--txt-hover); }
 
-    /* ---------- Hue helpers ---------- */
-    #hueSlider{ position:fixed; inset:0; opacity:0; pointer-events:none; } /* invisible, used for a11y/keyboard */
+    /* helper hint */
     .hint{
       position:fixed; top:.75rem; left:0; right:0; text-align:center;
-      font-size:.85rem; color:var(--text-weak);
-      opacity:0; transition:opacity .2s ease; pointer-events:none;
+      font-size:.85rem; color:var(--txt-weak); opacity:0; transition:opacity .2s ease;
+      pointer-events:none; padding:0 .5rem;
     }
-    body:focus-within .hint{ opacity:1; }
+    .hint kbd{ background:var(--txt); color:var(--bg); padding:0 .35rem; border-radius:4px; }
+    #hue:focus-visible ~ .hint{ opacity:1; }
 
-    /* ---------- Toast ---------- */
+    /* toast */
     .toast{
       position:fixed; top:.75rem; left:50%; transform:translate(-50%,-1rem);
-      background:var(--text); color:var(--bg);
-      padding:.35rem .6rem; border-radius:6px; font-size:.875rem;
-      opacity:0; transition:all .25s cubic-bezier(.175,.885,.32,1.275);
-      pointer-events:none; white-space:nowrap;
+      background:var(--txt); color:var(--bg); padding:.35rem .6rem; border-radius:6px;
+      font-size:.875rem; opacity:0; transition: all .25s cubic-bezier(.175,.885,.32,1.275);
+      pointer-events:none; z-index:2;
     }
     .toast.show{ opacity:1; transform:translate(-50%,0); }
+
+    /* fine rule (optional, ultra subtle) */
+    .rule{ height:var(--hair); background: currentColor; opacity:.06; margin:.25rem 0 1rem; }
   </style>
 </head>
 <body>
+  <!-- email toast -->
   <div class="toast" id="toast">Copied daniel.ahmadizadeh@gmail.com</div>
 
   <main>
-    <h1>Daniel Ahmadizadeh’s website</h1>
+    <!-- hue control (keyboard focus shows hint; click page cycles) -->
+    <input id="hue" type="range" min="0" max="360" value="var(--hue)" style="position:fixed; inset:0; opacity:0" aria-label="Change accent hue" />
+    <div class="hint" aria-hidden="true"><kbd>←</kbd> <kbd>→</kbd> change accent · click/tap anywhere to cycle</div>
 
-    <!-- invisible slider to enable arrow-key control; click body also changes hue -->
-    <input id="hueSlider" type="range" min="0" max="360" value="var(--hue)" aria-hidden="true" />
-    <div class="hint" aria-hidden="true">Tip: click anywhere or use ← → to change the accent color</div>
-
-    <section class="top">
+    <!-- header card -->
+    <section class="card" id="top">
       <div class="avatarWrap">
-        <img class="avatar" src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh">
-        <div class="avatarMask"></div>
+        <img class="avatar" src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh" />
+        <div class="mask"></div>
       </div>
 
-      <div>
-        <div class="who">
-          <div class="name">Daniel Ahmadizadeh</div>
-          <div class="role">Startup builder and teacher</div>
-          <div class="location">Brooklyn, NY</div>
-        </div>
-
-        <div class="latest">
-          <span class="arrow">→</span>
-          <span>Latest: Founder interview in</span>
-          <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one" target="_blank" rel="noopener noreferrer"><em>Mother of Success</em></a>
-        </div>
-
-        <nav class="links" aria-label="Primary">
-          <a href="#" class="copyEmail" aria-label="Copy email address">Email</a>
-          <a href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle" target="_blank" rel="noopener noreferrer">TED</a>
-          <a href="https://www.linkedin.com/in/danielahmadizadeh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" target="_blank" rel="noopener noreferrer">Office&nbsp;Hour</a>
-          <a href="https://dahmadizadeh.notion.site/My-Stack-2830eeb2be60807abbefc8c413166663?source=copy_link" target="_blank" rel="noopener noreferrer">My&nbsp;Stack</a>
-        </nav>
+      <div class="meta">
+        <div class="name">Daniel Ahmadizadeh</div>
+        <div class="role">Startup builder and teacher</div>
+        <div class="loc">Brooklyn, NY</div>
       </div>
+
+      <div class="latest">
+        <span class="arrow">→</span>
+        <span>Latest: Founder interview in</span>
+        <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one" target="_blank" rel="noopener noreferrer"><em>Mother of Success</em></a>
+      </div>
+
+      <nav class="links" aria-label="Primary">
+        <a href="#" class="link" id="copyEmail">Email</a>
+        <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle">TED</a>
+        <a class="link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/danielahmadizadeh/">LinkedIn</a>
+        <a class="link" target="_blank" rel="noopener noreferrer" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour">Office&nbsp;Hour</a>
+        <a class="link" target="_blank" rel="noopener noreferrer" href="https://dahmadizadeh.notion.site/My-Stack-2830eeb2be60807abbefc8c413166663?source=copy_link">My&nbsp;Stack</a>
+      </nav>
     </section>
 
-    <section class="copy">
+    <div class="rule" aria-hidden="true"></div>
+
+    <!-- body copy -->
+    <section class="prose">
       <p>Hi, I’m Daniel — I’m currently growing <a href="https://crustdata.com/" target="_blank" rel="noopener noreferrer">Crustdata</a>, a Y Combinator startup building the Google for AI agents. In 2025, we’ve grown from $700K to $5M ARR (as of October 30).</p>
 
       <p>I also teach entrepreneurship at <a href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336" target="_blank" rel="noopener noreferrer">Columbia University</a> and <a href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b" target="_blank" rel="noopener noreferrer">Stanford University</a>. Over the last 10+ years I’ve been the CEO of two Y Combinator–backed startups. My expertise is getting new products launched and changing the trajectory of existing ones.</p>
@@ -246,52 +232,60 @@
   </main>
 
   <script>
-    // Utilities
+    // theme-color meta sync with current bg
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    function updateThemeMeta(){
+    function syncThemeMeta(){
       const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
       metaTheme.setAttribute('content', bg);
     }
-    function setHue(h){
-      const v = ((+h % 360) + 360) % 360;
+
+    // restore hue from localStorage
+    const hueInput = document.getElementById('hue');
+    const savedHue = localStorage.getItem('--hue');
+    if(savedHue){ document.documentElement.style.setProperty('--hue', savedHue); syncThemeMeta(); }
+
+    // slider input updates hue
+    hueInput.addEventListener('input', e=>{
+      const v = e.target.value;
       document.documentElement.style.setProperty('--hue', v);
       localStorage.setItem('--hue', v);
-      updateThemeMeta();
-    }
-
-    // Restore saved hue
-    const saved = localStorage.getItem('--hue');
-    if(saved !== null){ setHue(saved); } else { updateThemeMeta(); }
-
-    // Arrow keys
-    window.addEventListener('keydown', e=>{
-      if(e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
-        e.preventDefault();
-        const current = +getComputedStyle(document.documentElement).getPropertyValue('--hue');
-        setHue(current + (e.key === 'ArrowRight' ? 8 : -8));
-      }
+      syncThemeMeta();
     });
 
-    // Click anywhere to change hue
+    // click anywhere cycles tasteful presets (A-like interaction)
+    const presets = [195, 175, 155, 135, 215, 265, 305];
     document.addEventListener('click', (e)=>{
-      // ignore clicks on anchors/buttons
-      const tag = e.target.tagName.toLowerCase();
-      if(tag === 'a' || tag === 'button' || e.target.closest('a,button')) return;
-      const current = +getComputedStyle(document.documentElement).getPropertyValue('--hue');
-      setHue(current + 12);
+      // ignore clicks on links/inputs
+      const t = e.target.closest('a, input, button');
+      if(t) return;
+      const current = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hue'));
+      let i = presets.findIndex(p => p === current);
+      i = (i + 1) % presets.length;
+      const next = presets[i];
+      document.documentElement.style.setProperty('--hue', next);
+      localStorage.setItem('--hue', next);
+      syncThemeMeta();
     });
 
-    // Copy email (subtle toast)
+    // keyboard left/right adjusts hue by 4deg
+    document.addEventListener('keydown', (e)=>{
+      if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const cur = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hue'));
+      const next = (cur + (e.key === 'ArrowRight' ? 4 : -4) + 360) % 360;
+      document.documentElement.style.setProperty('--hue', next);
+      localStorage.setItem('--hue', next);
+      syncThemeMeta();
+    });
+
+    // copy email + toast
+    const copyBtn = document.getElementById('copyEmail');
     const toast = document.getElementById('toast');
-    document.querySelector('.copyEmail').addEventListener('click', (e)=>{
+    copyBtn.addEventListener('click', (e)=>{
       e.preventDefault();
       navigator.clipboard.writeText('daniel.ahmadizadeh@gmail.com');
       toast.classList.add('show');
       setTimeout(()=>toast.classList.remove('show'), 2000);
     });
-
-    // Update theme meta when system theme flips
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeMeta);
   </script>
 </body>
 </html>
