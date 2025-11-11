@@ -1,178 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Daniel Ahmadizadeh</title>
+  <!-- Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFK01CM5JK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZFK01CM5JK');
+  </script>
 
-<style>
-/* ------------------------------ */
-/* GLOBAL */
-/* ------------------------------ */
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Ahmadizadeh</title>
+  <meta name="description" content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher" />
+  <meta name="theme-color" content="hsl(195,39%,32%)" />
 
-:root {
-  --bg: #f6f7f8;
-  --text: #2a3140;
-  --subtle-text: #5c6475;
-  --accent: #2a3140;
-  --max-width: 650px;
-  --line-height: 1.62;
-}
+  <!-- Social -->
+  <meta property="og:url" content="https://danielahmadizadeh.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Daniel Ahmadizadeh" />
+  <meta property="og:description" content="Daniel Ahmadizadeh · Brooklyn-based startup founder and teacher" />
+  <meta property="og:image" content="https://www.danielahmadizadeh.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: var(--line-height);
-  display: flex;
-  justify-content: center;
-  padding: 4rem 1.5rem;
-}
+  <link rel="icon" href="favicons/profileimg.png" />
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 
-/* Container */
-.main {
-  max-width: var(--max-width);
-  width: 100%;
-}
+  <style>
+    /* ---------- Fonts ---------- */
+    @font-face{
+      font-family:"Erode-Variable";
+      src:url("fonts/Erode-Variable.woff2") format("woff2"),
+          url("fonts/Erode-Variable.woff") format("woff"),
+          url("fonts/Erode-Variable.ttf") format("truetype");
+      font-weight:400 700;
+      font-display:swap;
+    }
+    @font-face{
+      font-family:"Erode-VariableItalic";
+      src:url("fonts/Erode-VariableItalic.woff2") format("woff2"),
+          url("fonts/Erode-VariableItalic.woff") format("woff"),
+          url("fonts/Erode-VariableItalic.ttf") format("truetype");
+      font-weight:400 700;
+      font-style:italic;
+      font-display:swap;
+    }
 
-/* ------------------------------ */
-/* HEADER */
-/* ------------------------------ */
+    /* ---------- Theme ---------- */
+    :root{
+      --hue:195;
+      --sat:39%;
+      --txtL:32%;
+      --bgL:97%;
+      --lead:1.55;
 
-.header {
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
+      --txt: hsl(var(--hue) var(--sat) var(--txtL));
+      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 26%));
+      --bg: hsl(var(--hue) var(--sat) var(--bgL));
+      --mask: hsl(var(--hue) var(--sat) 32% / 0.55);
 
-.header img {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-}
+      --maxw: 42rem;
+      --underline-offset: 3px;
+      --underline-thickness: 1px;
+    }
 
-.name-block {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.15rem;
-}
+    @media (prefers-color-scheme:dark) {
+      :root{ --txtL:86%; --bgL:10%; }
+    }
 
-.name-block .name {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text);
-}
+    /* ---------- Base ---------- */
+    * {
+      box-sizing:border-box;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    body {
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+      color:var(--txt);
+      background:var(--bg);
+      padding:3.25rem 1.25rem;
+      display:flex;
+      justify-content:center;
+      min-height:100vh;
+    }
+    main {
+      width:100%;
+      max-width:var(--maxw);
+    }
+    h1 {
+      position:absolute;
+      left:-9999px;
+    }
 
-.name-block .sub {
-  font-size: 0.88rem;
-  color: var(--subtle-text);
-}
+    /* ---------- Header Card ---------- */
+    .card{
+      display:flex;
+      gap:1rem;
+      align-items:flex-start;
+      margin-bottom:1.15rem;
+    }
+    .avatarWrap{
+      width:3.4rem; height:3.4rem;
+      position:relative;
+    }
+    .avatar{
+      width:100%; height:100%;
+      border-radius:50%;
+      display:block;
+    }
+    .avatarMask{
+      position:absolute; inset:0;
+      border-radius:50%;
+      background:var(--mask);
+      mix-blend-mode:screen;
+      pointer-events:none;
+    }
 
-.latest {
-  font-size: 0.82rem;
-  margin-top: 0.35rem;
-  color: var(--subtle-text);
-}
+    .info{
+      display:flex;
+      flex-direction:column;
+      gap:0.2rem;
+    }
+    .name{
+      font-weight:620;
+      font-size:1rem;
+    }
+    .role,.loc{
+      color:var(--txt-weak);
+      font-size:0.86rem;
+    }
 
-.latest a {
-  color: var(--subtle-text);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-}
+    .latest{
+      margin-top:0.15rem;
+      font-size:0.85rem;
+      color:hsl(var(--hue) var(--sat) calc(var(--txtL) + 28%));
+      display:flex;
+      align-items:center;
+      gap:0.4rem;
+    }
 
-/* ------------------------------ */
-/* NAVIGATION */
-/* ------------------------------ */
+    /* ---------- Links (New World-Class Style) ---------- */
+    .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.9rem 1.2rem;
+      margin-top:0.55rem;
+    }
+    .link{
+      position:relative;
+      text-decoration:none;
+      color:inherit;
+      font-weight:450;
+      padding-bottom:2px;
+    }
+    .link:after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:0;
+      height:1px;
+      background:currentColor;
+      opacity:.25; /* quieter, more premium */
+      transform:scaleY(.4);
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .link:hover:after,
+    .link:focus-visible:after{
+      opacity:.6;
+      transform:scaleY(.9);
+    }
 
-.nav {
-  display: flex;
-  gap: 1.6rem;
-  margin: 1.2rem 0 2rem 0;
-}
+    /* ---------- Divider ---------- */
+    .rule{
+      height:1px;
+      background:currentColor;
+      opacity:.035; /* ultra soft */
+      margin:2rem 0;
+    }
 
-.nav a {
-  font-weight: 400;
-  font-size: 0.92rem;
-  color: var(--text);
-  opacity: 0.65;
-  text-decoration: none;
-  padding-bottom: 2px;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
+    /* ---------- Body Copy ---------- */
+    .copy p{
+      font-family:"Erode-Variable";
+      font-size:1.125rem;
+      line-height:var(--lead);
+      letter-spacing:-0.015em;
+      margin:1.05rem 0;
+    }
 
-.nav a:hover {
-  opacity: 1;
-}
-
-.nav a::after {
-  content: "";
-  display: block;
-  height: 1px;
-  background: currentColor;
-  width: 0%;
-  transition: width 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
-  opacity: 0.35;
-}
-
-.nav a:hover::after {
-  width: 100%;
-  opacity: 0.75;
-}
-
-/* ------------------------------ */
-/* BODY CONTENT */
-/* ------------------------------ */
-
-.content p {
-  margin-bottom: 1.3rem;
-  font-size: 0.97rem;
-}
-</style>
+    /* ---------- Hue Slider ---------- */
+    #rangeSlider{
+      position:fixed;
+      inset:0;
+      opacity:0;
+    }
+  </style>
 </head>
 
 <body>
-<div class="main">
+  <main>
+    <h1>Daniel Ahmadizadeh’s website</h1>
 
-  <!-- HEADER -->
-  <div class="header">
-    <img src="your-photo.jpg" alt="Daniel Ahmadizadeh" />
-    <div class="name-block">
-      <div class="name">Daniel Ahmadizadeh</div>
-      <div class="sub">Startup builder and teacher<br>Brooklyn, NY</div>
-      <div class="latest">↳ Latest: Founder interview in <a href="#">Mother of Success</a></div>
-    </div>
-  </div>
+    <!-- Hue slider -->
+    <input id="rangeSlider" type="range" min="0" max="360" value="var(--hue)" />
 
-  <!-- NAVIGATION -->
-  <div class="nav">
-    <a href="#">Email</a>
-    <a href="#">TED</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">Office Hour</a>
-    <a href="#">My Stack</a>
-  </div>
+    <!-- Header -->
+    <section class="card">
+      <div class="avatarWrap">
+        <img class="avatar" src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh" />
+        <div class="avatarMask"></div>
+      </div>
+      <div class="info">
+        <div class="name">Daniel Ahmadizadeh</div>
+        <div class="role">Startup builder and teacher</div>
+        <div class="loc">Brooklyn, NY</div>
 
-  <!-- CONTENT -->
-  <div class="content">
+        <div class="latest">
+          → Latest: Founder interview in
+          <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one" class="link" target="_blank">Mother of Success</a>
+        </div>
 
-    <p>Hi, I'm Daniel — I'm currently growing <a href="#">Crustdata</a>, a Y Combinator startup building the Google for AI agents. In 2025, we've grown from $700K to $5M ARR (as of October 30).</p>
+        <div class="links">
+          <a href="#" class="link copyEmail">Email</a>
+          <a href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle" class="link" target="_blank">TED</a>
+          <a href="https://www.linkedin.com/in/danielahmadizadeh/" class="link" target="_blank">LinkedIn</a>
+          <a href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" class="link" target="_blank">Office Hour</a>
+          <a href="https://dahmadizadeh.notion.site/My-Stack-2830eeb2be60807abbefc8c413166663?source=copy_link" class="link" target="_blank">My Stack</a>
+        </div>
+      </div>
+    </section>
 
-    <p>I also teach entrepreneurship at <a href="#">Columbia University</a> and <a href="#">Stanford University</a>. Over the last 10+ years I've been the CEO of two Y Combinator–backed startups. My expertise is getting new products launched and changing the trajectory of existing ones.</p>
+    <div class="rule"></div>
 
-    <p>I have helped lead three companies to over $1M+ ARR, and my work has been recognized in publications like WSJ, The Today Show, and NPR. I've spoken at Harvard, Princeton, and <a href="#">TED</a> (where I was a <a href="#">TED Resident</a>). Beyond building, I also angel invest and coach founders. I was the very first investor in Motion after their YC batch at seed, now a $550M company.</p>
+    <!-- Body -->
+    <section class="copy">
+      <p>Hi, I’m Daniel — I’m currently growing <a target="_blank" href="https://crustdata.com/" class="link">Crustdata</a>, a Y Combinator startup building the Google for AI agents. In 2025, we’ve grown from $700K to $5M ARR (as of October 30).</p>
 
-    <p>My dream is to change the way entrepreneurship is taught globally — shifting it from theoretical to practical. Over three years I've taught 500+ students, helping them leave the classroom more confident in their next steps.</p>
+      <p>I also teach entrepreneurship at <a target="_blank" href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336" class="link">Columbia University</a> and <a target="_blank" href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b" class="link">Stanford University</a>. Over the last 10+ years I've been the CEO of two Y Combinator–backed startups.</p>
 
-    <p>My framework, <a href="#">Start With One</a>, focuses on solving a real problem for one real person, as a microcosm of an entire market. It transforms entrepreneurship from idea-led to problem-led, turning theoretical personas into actual human beings.</p>
+      <p>I have helped lead three companies to over $1M+ ARR, and my work has been recognized in publications like WSJ, The Today Show, and NPR. I’ve spoken at Harvard, Princeton, and TED (where I was a <a target="_blank" href="https://www.ted.com/about/programs-initiatives/ted-residency" class="link">TED Resident</a>).</p>
 
-    <p>Start With One has guided founders to launch new ventures and measure their impact. See testimonials <a href="#">here</a>. Join my weekly <a href="#">office hours</a> for live startup advice.</p>
+      <p>My dream is to change the way entrepreneurship is taught globally — shifting it from theoretical to practical. Over three years I’ve taught 500+ students, helping them leave the classroom more confident in their next steps.</p>
 
-    <p>Outside Crustdata, I focus on health, family, and writing. I'm a Columbia Business School alum. Here are some of my <a href="#">values</a> and a preview of the <a href="#">book</a> I'll publish next year.</p>
+      <p>My framework, <a target="_blank" href="https://dahmadizadeh.notion.site/Start-With-One-08d904bb937a4737859e6ddaabdf5a23?pvs=4S" class="link">Start With One</a>, focuses on solving a real problem for one real person, as a microcosm of an entire market.</p>
 
-  </div>
-</div>
+      <p>Start With One has guided founders to launch new ventures and measure their impact. See testimonials <a target="_blank" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe" class="link">here</a>. Join my weekly <a target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" class="link">office hours</a> for live advice.</p>
+
+      <p>Outside Crustdata, I focus on health, family, and writing. I’m a Columbia Business School alum. Here are some of my <a target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373" class="link">values</a> and a preview of the <a target="_blank" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit" class="link">book</a> I’ll publish next year.</p>
+    </section>
+  </main>
+
+  <script>
+    /* Hue logic */
+    const slider = document.getElementById("rangeSlider");
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+    function updateThemeMeta(){
+      const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+      metaTheme.setAttribute("content", bg);
+    }
+
+    const saved = localStorage.getItem("--hue");
+    if(saved){
+      document.documentElement.style.setProperty("--hue", saved);
+      updateThemeMeta();
+    }
+
+    slider.addEventListener("input", e=>{
+      const v = e.target.value;
+      document.documentElement.style.setProperty("--hue", v);
+      localStorage.setItem("--hue", v);
+      updateThemeMeta();
+    });
+
+    /* Copy email */
+    document.querySelector(".copyEmail").addEventListener("click", e=>{
+      e.preventDefault();
+      navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com");
+    });
+  </script>
 </body>
 </html>
