@@ -6,135 +6,147 @@
 <title>Daniel Ahmadizadeh</title>
 
 <style>
-  :root {
-    --text: #2e3340;
-    --subtle: rgba(46, 51, 64, 0.75);
-    --accent: #2e3340;
-    --bg: #f7f9f5;
-    --max-width: 640px;
-    --line-height: 1.62;
-    font-size: 18px;
-  }
+/* ------------------------------ */
+/* GLOBAL */
+/* ------------------------------ */
 
-  body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    font-family: "Georgia", serif;
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-  }
+:root {
+  --bg: #f6f7f8;
+  --text: #2a3140;
+  --subtle-text: #5c6475;
+  --accent: #2a3140;
+  --max-width: 650px;
+  --line-height: 1.62;
+}
 
-  .container {
-    max-width: var(--max-width);
-    margin: 4rem auto 6rem;
-    padding: 0 1.5rem;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: var(--line-height);
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
 
-  /* Top profile block */
-  .profile {
-    text-align: left;
-  }
-  .profile img {
-    height: 54px;
-    width: 54px;
-    border-radius: 50%;
-    margin-bottom: 0.4rem;
-  }
-  .name {
-    font-size: 1.1rem;
-    font-weight: bold;
-  }
-  .subtitle {
-    font-size: 0.9rem;
-    color: var(--subtle);
-    margin-top: 0.15rem;
-  }
-  .location {
-    font-size: 0.9rem;
-    color: var(--subtle);
-  }
+/* Container */
+.main {
+  max-width: var(--max-width);
+  width: 100%;
+}
 
-  .latest {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--subtle);
-  }
-  .latest a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .latest a:hover {
-    text-decoration: underline;
-  }
+/* ------------------------------ */
+/* HEADER */
+/* ------------------------------ */
 
-  /* NAVIGATION */
-  .nav {
-    display: flex;
-    gap: 1.75rem;
-    margin: 1.25rem 0 2rem;
-  }
+.header {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
-  .nav a {
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--accent);
-    opacity: 0.65;
-    text-decoration: none;
-    position: relative;
-    transition: opacity 0.2s ease;
-  }
+.header img {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+}
 
-  .nav a:hover {
-    opacity: 1;
-  }
+.name-block {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.15rem;
+}
 
-  .nav a::after {
-    content: "";
-    display: block;
-    height: 1px;
-    background: currentColor;
-    width: 0%;
-    margin-top: 2px;
-    opacity: 0.45;
-    transition: width 0.2s ease;
-  }
-  .nav a:hover::after {
-    width: 100%;
-    opacity: 0.75;
-  }
+.name-block .name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
 
-  /* Paragraph styling */
-  p {
-    line-height: var(--line-height);
-    margin: 1.1rem 0;
-    font-size: 1rem;
-    color: var(--text);
-  }
+.name-block .sub {
+  font-size: 0.88rem;
+  color: var(--subtle-text);
+}
 
-  a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+.latest {
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+  color: var(--subtle-text);
+}
 
+.latest a {
+  color: var(--subtle-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+/* ------------------------------ */
+/* NAVIGATION */
+/* ------------------------------ */
+
+.nav {
+  display: flex;
+  gap: 1.6rem;
+  margin: 1.2rem 0 2rem 0;
+}
+
+.nav a {
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: var(--text);
+  opacity: 0.65;
+  text-decoration: none;
+  padding-bottom: 2px;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+.nav a::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: currentColor;
+  width: 0%;
+  transition: width 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0.35;
+}
+
+.nav a:hover::after {
+  width: 100%;
+  opacity: 0.75;
+}
+
+/* ------------------------------ */
+/* BODY CONTENT */
+/* ------------------------------ */
+
+.content p {
+  margin-bottom: 1.3rem;
+  font-size: 0.97rem;
+}
 </style>
 </head>
 
 <body>
+<div class="main">
 
-<div class="container">
-
-  <div class="profile">
-    <img src="YOUR-PHOTO-HERE.jpg" alt="Daniel Ahmadizadeh" />
-    <div class="name">Daniel Ahmadizadeh</div>
-    <div class="subtitle">Startup builder and teacher</div>
-    <div class="location">Brooklyn, NY</div>
-    <div class="latest">↳ Latest: Founder interview in <a href="#">Mother of Success</a></div>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="your-photo.jpg" alt="Daniel Ahmadizadeh" />
+    <div class="name-block">
+      <div class="name">Daniel Ahmadizadeh</div>
+      <div class="sub">Startup builder and teacher<br>Brooklyn, NY</div>
+      <div class="latest">↳ Latest: Founder interview in <a href="#">Mother of Success</a></div>
+    </div>
   </div>
 
+  <!-- NAVIGATION -->
   <div class="nav">
     <a href="#">Email</a>
     <a href="#">TED</a>
@@ -143,44 +155,24 @@
     <a href="#">My Stack</a>
   </div>
 
-  <p>
-    Hi, I'm Daniel — I'm currently growing <a href="#">Crustdata</a>, a Y Combinator startup building the Google for AI agents.
-    In 2025, we've grown from $700K to $5M ARR (as of October 30).
-  </p>
+  <!-- CONTENT -->
+  <div class="content">
 
-  <p>
-    I also teach entrepreneurship at <a href="#">Columbia University</a> and <a href="#">Stanford University</a>.
-    Over the last 10+ years I've been the CEO of two Y Combinator–backed startups. My expertise is getting new
-    products launched and changing the trajectory of existing ones.
-  </p>
+    <p>Hi, I'm Daniel — I'm currently growing <a href="#">Crustdata</a>, a Y Combinator startup building the Google for AI agents. In 2025, we've grown from $700K to $5M ARR (as of October 30).</p>
 
-  <p>
-    I have helped lead three companies to over $1M+ ARR, and my work has been recognized in publications like WSJ, The Today Show,
-    and NPR. I've spoken at Harvard, Princeton, and TED (where I was a <a href="#">TED Resident</a>). Beyond building, I also
-    angel invest and coach founders. I was the first investor in Motion after their YC batch at seed, now a $550M company.
-  </p>
+    <p>I also teach entrepreneurship at <a href="#">Columbia University</a> and <a href="#">Stanford University</a>. Over the last 10+ years I've been the CEO of two Y Combinator–backed startups. My expertise is getting new products launched and changing the trajectory of existing ones.</p>
 
-  <p>
-    My dream is to change the way entrepreneurship is taught globally — shifting it from theoretical to practical.
-    Over three years I've taught 500+ students, helping them leave the classroom more confident in their next steps.
-  </p>
+    <p>I have helped lead three companies to over $1M+ ARR, and my work has been recognized in publications like WSJ, The Today Show, and NPR. I've spoken at Harvard, Princeton, and <a href="#">TED</a> (where I was a <a href="#">TED Resident</a>). Beyond building, I also angel invest and coach founders. I was the very first investor in Motion after their YC batch at seed, now a $550M company.</p>
 
-  <p>
-    My framework, <a href="#">Start With One</a>, focuses on solving a real problem for one real person, as a microcosm of an entire market.
-    It transforms entrepreneurship from idea-led to problem-led, turning theoretical personas into actual human beings.
-  </p>
+    <p>My dream is to change the way entrepreneurship is taught globally — shifting it from theoretical to practical. Over three years I've taught 500+ students, helping them leave the classroom more confident in their next steps.</p>
 
-  <p>
-    Start With One has guided founders to launch new ventures and measure their impact. See testimonials <a href="#">here</a>.
-    Join my weekly <a href="#">office hours</a> for live startup advice.
-  </p>
+    <p>My framework, <a href="#">Start With One</a>, focuses on solving a real problem for one real person, as a microcosm of an entire market. It transforms entrepreneurship from idea-led to problem-led, turning theoretical personas into actual human beings.</p>
 
-  <p>
-    Outside Crustdata, I focus on health, family, and writing. I'm a Columbia Business School alum.
-    Here are some of my <a href="#">values</a> and a preview of the <a href="#">book</a> I'll publish next year.
-  </p>
+    <p>Start With One has guided founders to launch new ventures and measure their impact. See testimonials <a href="#">here</a>. Join my weekly <a href="#">office hours</a> for live startup advice.</p>
 
+    <p>Outside Crustdata, I focus on health, family, and writing. I'm a Columbia Business School alum. Here are some of my <a href="#">values</a> and a preview of the <a href="#">book</a> I'll publish next year.</p>
+
+  </div>
 </div>
-
 </body>
 </html>
