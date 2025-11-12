@@ -266,11 +266,47 @@
     document.documentElement.style.setProperty("--hue", savedHue);
   }
 
-  /* COPY EMAIL */
-  document.querySelector(".copyEmail").addEventListener("click", e=>{
-    e.preventDefault();
-    navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com");
+ /* ---------- EMAIL COPY + TOAST FEEDBACK ---------- */
+const emailLink = document.querySelector(".copyEmail");
+emailLink.addEventListener("click", e => {
+  e.preventDefault();
+  const email = "daniel.ahmadizadeh@gmail.com";
+  navigator.clipboard.writeText(email).then(() => {
+    // Create toast element
+    const toast = document.createElement("div");
+    toast.textContent = "Copied to clipboard ✅";
+    toast.style.position = "fixed";
+    toast.style.bottom = "2rem";
+    toast.style.left = "50%";
+    toast.style.transform = "translateX(-50%)";
+    toast.style.background = "hsl(var(--hue) var(--sat) var(--txtL) / 0.9)";
+    toast.style.color = "white";
+    toast.style.padding = "0.6rem 1.2rem";
+    toast.style.borderRadius = "12px";
+    toast.style.fontFamily = "Inter, system-ui, sans-serif";
+    toast.style.fontSize = "0.9rem";
+    toast.style.fontWeight = "500";
+    toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+    toast.style.zIndex = "9999";
+    document.body.appendChild(toast);
+
+    // Fade in
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+      toast.style.transform = "translateX(-50%) translateY(-6px)";
+    });
+
+    // Fade out and remove
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(-50%) translateY(0)";
+      setTimeout(() => toast.remove(), 400);
+    }, 1500);
   });
+});
+
 
   /* ✅ AUTO-UPDATE DATE (e.g., “November 11”) */
   const now = new Date();
