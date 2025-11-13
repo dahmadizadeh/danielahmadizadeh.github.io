@@ -102,16 +102,21 @@
       margin-bottom:1.15rem;
     }
 
-    .avatarWrap{
-      width:3.4rem; height:3.4rem;
-      position:relative;
-    }
+   .avatarWrap {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+}
 
-    .avatar{
-      width:100%; height:100%;
-      border-radius:50%;
-      display:block;
-    }
+
+    .avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;      /* ← FIXES the weird stretched look */
+  object-position: center;
+}
 
     .avatarMask{
       position:absolute; inset:0;
@@ -194,6 +199,45 @@
       letter-spacing:-0.015em;
       margin:1.05rem 0;
     }
+/* ---------- Mobile layout fixes ---------- */
+@media (max-width: 480px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.9rem;
+  }
+
+  .info {
+    align-items: center;
+  }
+
+  .avatarWrap {
+    width: 4.4rem;
+    height: 4.4rem;
+  }
+
+  .latest {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.35;
+  }
+
+  .links {
+    justify-content: center;
+    gap: 0.5rem 1rem;
+    margin-top: 0.4rem;
+  }
+
+  .link {
+    font-size: 0.95rem;
+  }
+}
+.latest a {
+  white-space: nowrap;
+}
+
   </style>
 </head>
 
@@ -215,9 +259,13 @@
       <div class="loc">Brooklyn, NY</div>
 
       <div class="latest">
-        → Latest: Founder interview in
-        <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one" target="_blank" class="link">Mother of Success</a>
-      </div>
+  → Latest:
+  <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one"
+     target="_blank" class="link">
+    Founder interview in Mother of Success
+  </a>
+</div>
+
 
       <div class="links">
         <a href="#" class="link copyEmail">Email</a>
