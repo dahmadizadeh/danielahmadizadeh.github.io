@@ -291,6 +291,40 @@
     font-weight: 560;
   }
 }
+/* ---------- Desktop World-Class Layout + Aesthetic Improvements ---------- */
+@media (min-width: 900px) {
+
+  /* 1. Perfect centered reading column (world-class readability) */
+  main {
+    margin: 0 auto;
+    max-width: 60ch; /* ideal width for long-form text */
+  }
+
+  /* 2. Clean up background tone on desktop (less pink, more premium) */
+  :root {
+    --bgL: 99%;  /* lighter background */
+    --txtL: 30%; /* slightly stronger text contrast */
+  }
+
+  /* 3. Increase top padding for luxurious spacing */
+  body {
+    padding-top: 4rem;
+  }
+
+  /* 4. Larger, more premium name + role on desktop */
+  .name {
+    font-size: 1.25rem;
+  }
+  .role {
+    font-size: 1rem;
+  }
+
+  /* 5. Slightly tighter, more elegant serif paragraph spacing */
+  .copy p {
+    line-height: 1.48;
+    font-size: 1.18rem; /* subtle upscale for desktop */
+  }
+}
 
   </style>
 </head>
