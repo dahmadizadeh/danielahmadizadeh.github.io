@@ -245,6 +245,34 @@
     line-height: 1.25;
   }
 }
+/* ---------- Mobile micro-refinements for world-class polish ---------- */
+@media (max-width: 480px) {
+
+  /* 1. Increase text contrast (cleaner, less washed-out) */
+  :root {
+    --txtL: 28%;
+  }
+
+  /* 2. Tighten name → role → location spacing */
+  .info .name {
+    margin-bottom: 0.2rem;
+  }
+  .role,
+  .loc {
+    margin-top: -0.05rem;
+  }
+
+  /* 3. Make "Latest:" visually lighter + harmonious */
+  .latest {
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+
+  /* 4. Add subtle breathing room above the link cluster */
+  .links {
+    margin-top: 0.9rem;
+  }
+}
 
   </style>
 </head>
