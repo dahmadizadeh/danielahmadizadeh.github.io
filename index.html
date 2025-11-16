@@ -335,7 +335,7 @@
 }
 /* ---------- Substack integration (world-class minimal) ---------- */
 .substack-block {
-  margin-top: 3.5rem;
+  margin-top: 4.2rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(0,0,0,0.06);
 }
@@ -343,7 +343,7 @@
 .substack-block h2 {
   font-family: "Erode-Variable";
   font-weight: 620;
-  font-size: 1.35rem;
+  font-size: 1.28rem;
   letter-spacing: -0.01em;
   margin-bottom: 0.3rem;
   color: var(--txt);
@@ -352,17 +352,24 @@
 .substack-block .subtle {
   font-family: Inter, sans-serif;
   font-size: 0.97rem;
-  line-height: 1.55;
+  line-height: 1.48;
   color: var(--txt-weak);
   margin-bottom: 1.4rem;
 }
 
-/* Make the embed invisible + seamless */
+/* Make embed seamless + fade in */
 .substack-embed {
   border: none !important;
   padding: 0 !important;
   background: transparent !important;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
+
+.substack-embed.is-loaded {
+  opacity: 1;
+}
+
 
   </style>
 </head>
@@ -423,13 +430,29 @@
     <p>Outside of work, I focus on health, family, and writing. I'm a graduate of Columbia Business School and am exploring doctoral research in entrepreneurship education. Here are my <a target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373" class="link">values</a> and a preview of the <a target="_blank" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit" class="link">book</a> I'll publish next year.</p>
 <!-- Substack Section -->
 <section class="substack-block">
-  <h2>Start With One — A Weekly Letter</h2>
+  <h2>Start With One – A Weekly Letter</h2>
   <p class="subtle">
     Ideas on entrepreneurship, behavior change, and health — drawn from operating, teaching, and personal experiments.
   </p>
 
+  <!-- Substack subscribe form (fully interactive) -->
   <script async src="https://substackapi.com/embed.js"></script>
   <div class="substack-embed" data-url="https://startwithone.substack.com"></div>
+</section>
+
+<script>
+/* Fade-in when Substack loads */
+document.addEventListener("DOMContentLoaded", () => {
+  const check = setInterval(() => {
+    const iframe = document.querySelector(".substack-embed iframe");
+    if (iframe) {
+      document.querySelector(".substack-embed").classList.add("is-loaded");
+      clearInterval(check);
+    }
+  }, 80);
+});
+</script>
+
 </section>
 
   </section>
