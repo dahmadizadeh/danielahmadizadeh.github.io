@@ -335,9 +335,10 @@
 }
 /* ---------- Substack integration (world-class minimal) ---------- */
 .substack-block {
-  margin-top: 3.6rem;
-  padding-top: 1rem;
+  margin-top: 4.8rem;  /* ✨ increased spacing */
+  padding-top: 1.4rem; /* ✨ slightly more breathing room */
   border-top: 1px solid rgba(0,0,0,0.06);
+  opacity: 0.98;       /* optional tiny polish */
 }
 
 .substack-block h2 {
@@ -530,6 +531,15 @@ emailLink.addEventListener("click", e => {
   const now = new Date();
   const options = { month: 'long', day: 'numeric' };
   document.getElementById("arrDate").textContent = now.toLocaleDateString('en-US', options);
+  /* Fade in Substack embed */
+const iframe = document.querySelector("iframe[src*='substack']");
+if (iframe) {
+  iframe.addEventListener("load", () => {
+    iframe.classList.add("is-loaded");
+  });
+}
+
+
 </script>
 
 </body>
