@@ -335,7 +335,7 @@
 }
 /* ---------- Substack integration (world-class minimal) ---------- */
 .substack-block {
-  margin-top: 4.2rem;
+  margin-top: 3.6rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(0,0,0,0.06);
 }
@@ -375,11 +375,15 @@ html {
 }
 .nav-cta {
   font-weight: 600;
-  color: hsl(195,39%,32%); /* or the purple you use */
+  color: hsl(var(--hue) var(--sat) calc(var(--txtL) - 5%)); /* or the purple you use */
 }
 
 .nav-cta:hover {
   text-decoration: underline;
+}
+.nav-cta:active,
+.nav-cta:focus {
+  opacity: 0.7;
 }
 
   </style>
