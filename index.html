@@ -333,6 +333,36 @@
 .copy p {
   margin: 1.4rem 0; /* was ~1.05rem */
 }
+/* ---------- Substack integration (world-class minimal) ---------- */
+.substack-block {
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.substack-block h2 {
+  font-family: "Erode-Variable";
+  font-weight: 620;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.3rem;
+  color: var(--txt);
+}
+
+.substack-block .subtle {
+  font-family: Inter, sans-serif;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--txt-weak);
+  margin-bottom: 1.4rem;
+}
+
+/* Make the embed invisible + seamless */
+.substack-embed {
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
 
   </style>
 </head>
@@ -391,6 +421,16 @@
     <p>Founders use Start With One to launch and validate their ventures. You can read testimonials <a target="_blank" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe" class="link">here</a> or join my weekly <a target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" class="link">Start With One session</a> for live advice.</p>
 
     <p>Outside of work, I focus on health, family, and writing. I'm a graduate of Columbia Business School and am exploring doctoral research in entrepreneurship education. Here are my <a target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373" class="link">values</a> and a preview of the <a target="_blank" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit" class="link">book</a> I'll publish next year.</p>
+<!-- Substack Section -->
+<section class="substack-block">
+  <h2>Start With One — A Weekly Letter</h2>
+  <p class="subtle">
+    Ideas on entrepreneurship, behavior change, and health — drawn from operating, teaching, and personal experiments.
+  </p>
+
+  <script async src="https://substackapi.com/embed.js"></script>
+  <div class="substack-embed" data-url="https://startwithone.substack.com"></div>
+</section>
 
   </section>
 </main>
