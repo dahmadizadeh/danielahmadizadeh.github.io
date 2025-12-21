@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 
   <style>
-    /* ---------- Fonts ---------- */
     @font-face{
       font-family:"Erode-Variable";
       src:url("fonts/Erode-Variable.woff2") format("woff2"),
@@ -42,14 +41,15 @@
     :root{
       --hue:195;
       --sat:39%;
-      --txtL:32%;
+      --txtL:31%;
       --bgL:97%;
-      --lead:1.55;
+      --lead:1.56;
 
       --txt: hsl(var(--hue) var(--sat) var(--txtL));
-      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 26%));
+      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 28%));
       --bg: hsl(var(--hue) var(--sat) var(--bgL));
       --mask: hsl(var(--hue) var(--sat) 32% / 0.55);
+
       --maxw: 42rem;
     }
 
@@ -57,14 +57,18 @@
       :root{ --txtL:86%; --bgL:10%; }
     }
 
-    * { box-sizing:border-box; }
+    * {
+      box-sizing:border-box;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
     body {
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
       color:var(--txt);
       background:var(--bg);
-      padding:3.25rem 1.25rem;
+      padding:3.6rem 1.25rem;
       display:flex;
       justify-content:center;
       min-height:100vh;
@@ -83,13 +87,18 @@
       display:flex;
       gap:1rem;
       align-items:flex-start;
-      margin-bottom:1.15rem;
+      margin-bottom:1.25rem;
     }
 
     .avatarWrap {
       width:4rem;
       height:4rem;
       position:relative;
+      transition:transform .25s ease;
+    }
+
+    .avatarWrap:hover {
+      transform:translateY(-1px);
     }
 
     .avatar {
@@ -97,24 +106,28 @@
       height:100%;
       border-radius:50%;
       object-fit:cover;
+      display:block;
     }
 
     .avatarMask{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       border-radius:50%;
       background:var(--mask);
       mix-blend-mode:screen;
+      pointer-events:none;
     }
 
     .info{
       display:flex;
       flex-direction:column;
-      gap:0.2rem;
+      gap:0.22rem;
     }
 
     .name{
-      font-weight:620;
+      font-weight:640;
       font-size:1rem;
+      letter-spacing:-0.01em;
     }
 
     .role,.loc{
@@ -123,7 +136,7 @@
     }
 
     .latest{
-      margin-top:0.15rem;
+      margin-top:0.18rem;
       font-size:0.85rem;
       color:var(--txt-weak);
       display:flex;
@@ -134,19 +147,20 @@
     .links{
       display:flex;
       flex-wrap:wrap;
-      gap:0.9rem 1.2rem;
-      margin-top:0.55rem;
+      gap:0.9rem 1.25rem;
+      margin-top:0.6rem;
     }
 
     .links.secondary{
       margin-top:0.25rem;
+      opacity:0.9;
     }
 
     .link{
       position:relative;
       text-decoration:none;
       color:inherit;
-      font-weight:450;
+      font-weight:460;
       padding-bottom:2px;
     }
 
@@ -156,21 +170,21 @@
       left:0; right:0; bottom:0;
       height:1px;
       background:currentColor;
-      opacity:.25;
+      opacity:.22;
       transform:scaleX(0);
-      transition:transform .17s ease, opacity .17s ease;
+      transition:transform .18s ease, opacity .18s ease;
     }
 
     .link:hover:after{
-      opacity:.6;
+      opacity:.55;
       transform:scaleX(1);
     }
 
     .rule{
       height:1px;
       background:currentColor;
-      opacity:.04;
-      margin:2rem 0;
+      opacity:.045;
+      margin:2.2rem 0;
     }
 
     .copy p{
@@ -178,14 +192,21 @@
       font-size:1.125rem;
       line-height:var(--lead);
       letter-spacing:-0.015em;
-      margin:1.4rem 0;
+      margin:1.45rem 0;
     }
 
     @media (max-width:480px){
-      .card{ flex-direction:column; align-items:center; text-align:center; }
+      .card{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:0.9rem;
+      }
       .info{ align-items:center; }
       .links{ justify-content:center; }
     }
+
+    html { scroll-behavior:smooth; }
   </style>
 </head>
 
@@ -232,7 +253,8 @@
         <a class="link" target="_blank" href="https://startwithone.substack.com">
           Weekly Letter
         </a>
-        <a class="link" target="_blank" href="https://dahmadizadeh.notion.site/Projects">
+        <a class="link" target="_blank"
+           href="https://showcase-hub--danielahmadizad.replit.app/">
           Projects
         </a>
       </div>
@@ -241,7 +263,6 @@
 
   <div class="rule"></div>
 
-  <!-- Body copy preserved exactly -->
   <section class="copy">
 
     <p>Currently growing <a target="_blank" href="https://crustdata.com/" class="link">Crustdata</a>, a Y Combinator startup. In 2025, we’ve scaled from $700K to $5M ARR (as of <span id="arrDate"></span>)</p>
@@ -271,7 +292,9 @@
   });
 
   const saved = localStorage.getItem("--hue");
-  if (saved) document.documentElement.style.setProperty("--hue", saved);
+  if (saved) {
+    document.documentElement.style.setProperty("--hue", saved);
+  }
 
   document.querySelector(".copyEmail").addEventListener("click", e => {
     e.preventDefault();
