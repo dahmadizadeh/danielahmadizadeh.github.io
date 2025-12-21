@@ -38,15 +38,6 @@
       font-weight:400 700;
       font-display:swap;
     }
-    @font-face{
-      font-family:"Erode-VariableItalic";
-      src:url("fonts/Erode-VariableItalic.woff2") format("woff2"),
-          url("fonts/Erode-VariableItalic.woff") format("woff"),
-          url("fonts/Erode-VariableItalic.ttf") format("truetype");
-      font-weight:400 700;
-      font-style:italic;
-      font-display:swap;
-    }
 
     /* ---------- Theme ---------- */
     :root{
@@ -83,7 +74,7 @@
       display:flex;
       justify-content:center;
       min-height:100vh;
-      cursor:pointer; /* enables click-to-change-color */
+      cursor:pointer;
     }
 
     main {
@@ -102,24 +93,22 @@
       margin-bottom:1.15rem;
     }
 
-   .avatarWrap {
-  width: 4rem;
-  height: 4rem;
-  position: relative;
-}
-
+    .avatarWrap {
+      width:4rem;
+      height:4rem;
+      position:relative;
+    }
 
     .avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: block;
-  object-fit: cover;      /* ← FIXES the weird stretched look */
-  object-position: center;
-}
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      object-fit:cover;
+    }
 
     .avatarMask{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       border-radius:50%;
       background:var(--mask);
       mix-blend-mode:screen;
@@ -145,10 +134,10 @@
     .latest{
       margin-top:0.15rem;
       font-size:0.85rem;
-      color:hsl(var(--hue) var(--sat) calc(var(--txtL) + 28%));
+      color:var(--txt-weak);
       display:flex;
-      align-items:center;
       gap:0.4rem;
+      flex-wrap:wrap;
     }
 
     /* ---------- Links ---------- */
@@ -157,6 +146,10 @@
       flex-wrap:wrap;
       gap:0.9rem 1.2rem;
       margin-top:0.55rem;
+    }
+
+    .links.secondary {
+      margin-top:0.25rem;
     }
 
     .link{
@@ -183,7 +176,6 @@
       transform:scaleX(1);
     }
 
-    /* ---------- Divider ---------- */
     .rule{
       height:1px;
       background:currentColor;
@@ -191,214 +183,36 @@
       margin:2rem 0;
     }
 
-    /* ---------- Body Copy ---------- */
     .copy p{
       font-family:"Erode-Variable";
       font-size:1.125rem;
       line-height:var(--lead);
       letter-spacing:-0.015em;
-      margin:1.05rem 0;
+      margin:1.4rem 0;
     }
-/* ---------- Mobile layout fixes ---------- */
-@media (max-width: 480px) {
-  .card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.9rem;
-  }
 
-  .info {
-    align-items: center;
-  }
+    @media (max-width:480px){
+      .card{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+      .info{ align-items:center; }
+      .links{ justify-content:center; }
+    }
 
-  .avatarWrap {
-    width: 4.4rem;
-    height: 4.4rem;
-  }
-
-  .latest {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.35;
-  }
-
-  .links {
-    justify-content: center;
-    gap: 0.5rem 1rem;
-    margin-top: 0.4rem;
-  }
-
-  .link {
-    font-size: 0.95rem;
-  }
-}
-.latest a {
-  white-space: nowrap;
-}
-@media (max-width: 480px) {
-  .link {
-    font-size: 1rem;
-    font-weight: 480;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-  }
-}
-/* ---------- Mobile micro-refinements for world-class polish ---------- */
-@media (max-width: 480px) {
-
-  /* 1. Increase text contrast (cleaner, less washed-out) */
-  :root {
-    --txtL: 28%;
-  }
-
-  /* 2. Tighten name → role → location spacing */
-  .info .name {
-    margin-bottom: 0.2rem;
-  }
-  .role,
-  .loc {
-    margin-top: -0.05rem;
-  }
-
-  /* 3. Make "Latest:" visually lighter + harmonious */
-  .latest {
-    font-size: 0.85rem;
-    opacity: 0.85;
-  }
-
-  /* 4. Add subtle breathing room above the link cluster */
-  .links {
-    margin-top: 0.9rem;
-  }
-}
-/* ---------- Optional next-level mobile refinements ---------- */
-@media (max-width: 480px) {
-
-  /* 1. Slightly tighter body paragraph line-height */
-  .copy p {
-    line-height: 1.48;
-  }
-
-  /* 2. More breathing room before first paragraph divider */
-  .rule {
-    margin: 2.4rem 0;
-  }
-
-  /* 3. Slightly stronger link weight in body text */
-  .copy a {
-    font-weight: 560;
-  }
-}
-/* ---------- Desktop World-Class Layout + Aesthetic Improvements ---------- */
-@media (min-width: 900px) {
-
-  /* 1. Perfect centered reading column (world-class readability) */
-  main {
-    margin: 0 auto;
-    max-width: 60ch; /* ideal width for long-form text */
-  }
-
-  /* 2. Clean up background tone on desktop (less pink, more premium) */
-  :root {
-    --bgL: 99%;  /* lighter background */
-    --txtL: 30%; /* slightly stronger text contrast */
-  }
-
-  /* 3. Increase top padding for luxurious spacing */
-  body {
-    padding-top: 4rem;
-  }
-
-  /* 4. Larger, more premium name + role on desktop */
-  .name {
-    font-size: 1.25rem;
-  }
-  .role {
-    font-size: 1rem;
-  }
-
-  /* 5. Slightly tighter, more elegant serif paragraph spacing */
-  .copy p {
-    line-height: 1.48;
-    font-size: 1.18rem; /* subtle upscale for desktop */
-  }
-}
-@media (min-width: 900px) {
-  body {
-    padding-top: 5rem; /* was 4rem */
-  }
-}
-.copy p {
-  margin: 1.4rem 0; /* was ~1.05rem */
-}
-/* ---------- Substack integration (world-class minimal) ---------- */
-.substack-block {
-  margin-top: 4.8rem;  /* ✨ increased spacing */
-  padding-top: 1.4rem; /* ✨ slightly more breathing room */
-  border-top: 1px solid rgba(0,0,0,0.06);
-  opacity: 0.98;       /* optional tiny polish */
-}
-
-.substack-block h2 {
-  font-family: "Erode-Variable";
-  font-weight: 620;
-  font-size: 1.28rem;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.3rem;
-  color: var(--txt);
-}
-
-.substack-block .subtle {
-  font-family: Inter, sans-serif;
-  font-size: 0.97rem;
-  line-height: 1.48;
-  color: var(--txt-weak);
-  margin-bottom: 1.4rem;
-}
-
-/* Make embed seamless + fade in */
-.substack-embed {
-  border: none !important;
-  padding: 0 !important;
-  background: transparent !important;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-.substack-embed.is-loaded {
-  opacity: 1;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-.nav-cta {
-  font-weight: 600;
-  color: hsl(var(--hue) var(--sat) calc(var(--txtL) - 5%)); /* or the purple you use */
-}
-
-.nav-cta:hover {
-  text-decoration: underline;
-}
-.nav-cta:active,
-.nav-cta:focus {
-  opacity: 0.7;
-}
-
+    html { scroll-behavior:smooth; }
   </style>
 </head>
 
 <body>
 
 <main>
-  <h1>Daniel Ahmadizadeh’s website</h1>
+  <h1>Daniel Ahmadizadeh</h1>
 
-  <!-- Header -->
   <section class="card">
     <div class="avatarWrap">
-      <img class="avatar" src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh" />
+      <img class="avatar" src="profilepic.jpg" alt="Daniel Ahmadizadeh" />
       <div class="avatarMask"></div>
     </div>
 
@@ -408,138 +222,88 @@ html {
       <div class="loc">Brooklyn, NY</div>
 
       <div class="latest">
-  → Latest:
-  <a href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one"
-     target="_blank" class="link">
-    Founder interview in Mother of Success
-  </a>
-</div>
+        → Latest:
+        <a class="link" target="_blank"
+           href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one">
+          Founder interview in Mother of Success
+        </a>
+      </div>
 
-
-      <div class="links">
+      <!-- Line 1 -->
+      <div class="links primary">
         <a href="#" class="link copyEmail">Email</a>
-        <a href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle" target="_blank" class="link">TED</a>
-        <a href="https://www.linkedin.com/in/danielahmadizadeh/" target="_blank" class="link">LinkedIn</a>
-        <a href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" target="_blank" class="link">Join a Start With One Session</a>
-        <a href="https://dahmadizadeh.notion.site/Start-With-One-Moments-2a90eeb2be6080a983a7cc055b3f9916?source=copy_link" target="_blank" class="link">Moments</a>
-        <a href="#newsletter" class="nav-cta">Weekly Letter</a>
+        <a class="link" target="_blank" href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle">TED</a>
+        <a class="link" target="_blank" href="https://www.linkedin.com/in/danielahmadizadeh/">LinkedIn</a>
+        <a class="link" target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour">
+          Join a Start With One Session
+        </a>
+      </div>
+
+      <!-- Line 2 -->
+      <div class="links secondary">
+        <a class="link" target="_blank"
+           href="https://dahmadizadeh.notion.site/Start-With-One-Moments-2a90eeb2be6080a983a7cc055b3f9916">
+          Moments
+        </a>
+        <a class="link" target="_blank" href="https://startwithone.substack.com">
+          Weekly Letter
+        </a>
+        <a class="link" target="_blank" href="https://dahmadizadeh.notion.site/Projects">
+          Projects
+        </a>
       </div>
     </div>
   </section>
 
   <div class="rule"></div>
 
-  <!-- Body -->
   <section class="copy">
+    <p>
+      Currently growing <a class="link" target="_blank" href="https://crustdata.com/">Crustdata</a>, a Y Combinator startup.
+      In 2025, we’ve scaled from $700K to $5M ARR (as of <span id="arrDate"></span>).
+    </p>
 
-    <!-- ✅ NEW LINE WITH AUTO-UPDATING DATE -->
-    <p>Currently growing <a target="_blank" href="https://crustdata.com/" class="link">Crustdata</a>, a Y Combinator startup. In 2025, we’ve scaled from $700K to $5M ARR (as of <span id="arrDate"></span>)</p>
+    <p>
+      Previously led two Y Combinator–backed startups as CEO. I was also the first investor in
+      <a class="link" target="_blank" href="https://www.forbes.com/sites/frederickdaso/2020/11/06/motion-a-y-combinator-productivity-startup-keeps-you-moving-in-google-chrome/">
+        Motion
+      </a>
+      after their YC batch — now a $550M company.
+    </p>
 
-    <p>Previously led two Y Combinator–backed startups as CEO. I was also the first investor in <a target="_blank" href="https://www.forbes.com/sites/frederickdaso/2020/11/06/motion-a-y-combinator-productivity-startup-keeps-you-moving-in-google-chrome/" class="link">Motion</a> after their YC batch at seed — now a $550M company.</p>
+    <p>
+      I teach entrepreneurship at Columbia University and Stanford University. Each student ends
+      the course by presenting the story of one real human being whose problem they solved.
+    </p>
 
-    <p>I teach entrepreneurship at <a target="_blank" href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336" class="link">Columbia University</a> and <a target="_blank" href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b" class="link">Stanford University</a>. Courses include Becoming an Entrepreneur, Innovation & Entrepreneurship, and Changing the World Through Venture Creation. Each student ends the course by presenting at Demo Day, sharing the story of a specific human being whose problem they solved. </p>
-
-    <p>Outside the classroom, my work as a founder has been featured in WSJ, The Today Show, NPR, and I've spoken at Harvard, Princeton, and TED (as a <a target="_blank" href="https://www.ted.com/about/programs-initiatives/ted-residency" class="link">TED Resident</a>).</p>
-    <p>My framework, <a target="_blank" href="https://dahmadizadeh.notion.site/Start-With-One-08d904bb937a4737859e6ddaabdf5a23?pvs=4S" class="link">Start With One</a>, focuses on solving a real problem for one real person as the microcosm of an entire market. I've taught 500+ students to build more practical, human-centered companies.</p>
-
-    <p>Founders use Start With One to launch and validate their ventures. You can read testimonials <a target="_blank" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe" class="link">here</a> or join my weekly <a target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" class="link">Start With One session</a> for live advice.</p>
-
-    <p>Outside of work, I focus on health, family, and writing. I'm a graduate of Columbia Business School and am exploring doctoral research in entrepreneurship education. Here are my <a target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373" class="link">values</a> and a preview of the <a target="_blank" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit" class="link">book</a> I'll publish next year.</p>
-<!-- Substack Section -->
-<section id="newsletter" class="substack-block">
-    <h2>Start With One – A Weekly Letter</h2>
-  <p class="subtle">
-    Ideas on entrepreneurship, behavior change, and health — drawn from operating, teaching, and personal experiments.
-  </p>
-
-  <!-- Substack subscribe form -->
-<iframe
-  src="https://startwithone.substack.com/embed"
-  width="100%"
-  height="320"
-  style="border:0; background:transparent;"
-  frameborder="0"
-  scrolling="no">
-</iframe>
-
-
-</section>
-
-
-</section>
+    <p>
+      Outside the classroom, my work has been featured in WSJ, The Today Show, NPR, and I’ve spoken
+      at Harvard, Princeton, and TED.
+    </p>
+  </section>
 
 </main>
 
 <script>
-  /* CLICK TO CHANGE COLOR */
-  document.body.addEventListener("click", function(e){
+  document.body.addEventListener("click", e => {
     if (e.target.closest("a")) return;
-    const newHue = Math.floor(Math.random() * 360);
-    document.documentElement.style.setProperty("--hue", newHue);
-    localStorage.setItem("--hue", newHue);
+    const h = Math.floor(Math.random() * 360);
+    document.documentElement.style.setProperty("--hue", h);
+    localStorage.setItem("--hue", h);
   });
 
-  /* RESTORE HUE */
-  const savedHue = localStorage.getItem("--hue");
-  if (savedHue) {
-    document.documentElement.style.setProperty("--hue", savedHue);
-  }
+  const saved = localStorage.getItem("--hue");
+  if (saved) document.documentElement.style.setProperty("--hue", saved);
 
- /* ---------- EMAIL COPY + TOAST FEEDBACK ---------- */
-const emailLink = document.querySelector(".copyEmail");
-emailLink.addEventListener("click", e => {
-  e.preventDefault();
-  const email = "daniel.ahmadizadeh@gmail.com";
-  navigator.clipboard.writeText(email).then(() => {
-    // Create toast element
-    const toast = document.createElement("div");
-    toast.textContent = "Copied to clipboard ✅";
-    toast.style.position = "fixed";
-    toast.style.bottom = "2rem";
-    toast.style.left = "50%";
-    toast.style.transform = "translateX(-50%)";
-    toast.style.background = "hsl(var(--hue) var(--sat) var(--txtL) / 0.9)";
-    toast.style.color = "white";
-    toast.style.padding = "0.6rem 1.2rem";
-    toast.style.borderRadius = "12px";
-    toast.style.fontFamily = "Inter, system-ui, sans-serif";
-    toast.style.fontSize = "0.9rem";
-    toast.style.fontWeight = "500";
-    toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-    toast.style.opacity = "0";
-    toast.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-    toast.style.zIndex = "9999";
-    document.body.appendChild(toast);
-
-    // Fade in
-    requestAnimationFrame(() => {
-      toast.style.opacity = "1";
-      toast.style.transform = "translateX(-50%) translateY(-6px)";
-    });
-
-    // Fade out and remove
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transform = "translateX(-50%) translateY(0)";
-      setTimeout(() => toast.remove(), 400);
-    }, 1500);
+  const emailLink = document.querySelector(".copyEmail");
+  emailLink.addEventListener("click", e => {
+    e.preventDefault();
+    navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com");
   });
-});
 
-
-  /* ✅ AUTO-UPDATE DATE (e.g., “November 11”) */
   const now = new Date();
-  const options = { month: 'long', day: 'numeric' };
-  document.getElementById("arrDate").textContent = now.toLocaleDateString('en-US', options);
-  /* Fade in Substack embed */
-const iframe = document.querySelector("iframe[src*='substack']");
-if (iframe) {
-  iframe.addEventListener("load", () => {
-    iframe.classList.add("is-loaded");
-  });
-}
-
-
+  document.getElementById("arrDate").textContent =
+    now.toLocaleDateString("en-US", { month:"long", day:"numeric" });
 </script>
 
 </body>
