@@ -1,0 +1,11 @@
+{
+  "name": "calcard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Turn a plain booking link into a branded link that unfurls beautifully in Slack, iMessage and LinkedIn.",
+  "scripts": {
+    "test": "node --test",
+    "dev": "npx wrangler pages dev public --compatibility-date=2024-01-01"
+  }
+}

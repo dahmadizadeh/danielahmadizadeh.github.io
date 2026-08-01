@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CalCard — better booking-link previews</title>
+  <meta name="description" content="Turn a plain Google Calendar or Calendly link into a branded link that looks great when you share it in Slack, iMessage, and LinkedIn." />
+  <meta property="og:title" content="CalCard — better booking-link previews" />
+  <meta property="og:description" content="Paste your booking link, add your branding, get a link that unfurls beautifully." />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0b0d12; --panel: #12151c; --panel-2: #171b24; --border: #242a35;
+      --text: #e8ebf0; --muted: #9aa3b2; --accent: #4f7cff; --accent-ink: #fff;
+      --ok: #3ecf8e; --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: radial-gradient(1200px 600px at 80% -10%, #182033 0%, var(--bg) 55%);
+      color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 22px 80px; }
+    header { margin-bottom: 34px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; font-size: .8rem;
+      color: var(--muted); border: 1px solid var(--border); background: var(--panel);
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 18px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+    h1 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); line-height: 1.1; margin: 0 0 12px; letter-spacing: -.02em; }
+    h1 .grad { background: linear-gradient(90deg,#7aa2ff,#b98bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lede { color: var(--muted); max-width: 620px; font-size: 1.05rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+    .panel h2 { font-size: .95rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 18px; }
+    label { display: block; font-size: .85rem; color: var(--muted); margin: 0 0 6px; }
+    .field { margin-bottom: 16px; }
+    input, textarea {
+      width: 100%; background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+      border-radius: 10px; padding: 11px 12px; font: inherit; font-size: .95rem;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    textarea { resize: vertical; min-height: 62px; }
+    .hint { font-size: .78rem; color: var(--muted); margin-top: 5px; }
+    .out { margin-top: 4px; }
+    .linkbox {
+      display: flex; gap: 8px; align-items: center; background: var(--panel-2);
+      border: 1px solid var(--border); border-radius: 10px; padding: 8px 8px 8px 12px;
+    }
+    .linkbox input { border: none; background: transparent; padding: 3px 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82rem; }
+    button.copy {
+      white-space: nowrap; background: var(--accent); color: var(--accent-ink); border: none;
+      padding: 9px 16px; border-radius: 8px; font: inherit; font-weight: 600; cursor: pointer;
+    }
+    button.copy.done { background: var(--ok); }
+    /* Slack preview */
+    .preview-label { font-size: .78rem; color: var(--muted); margin: 20px 0 10px; }
+    .slack {
+      background: #fff; color: #1d1c1d; border-radius: 10px; padding: 14px 16px; font-size: .9rem;
+    }
+    .slack .msg { display: flex; gap: 10px; }
+    .slack .avatar { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg,#7aa2ff,#b98bff); flex: none; }
+    .slack .who { font-weight: 700; margin-bottom: 2px; }
+    .slack .who span { font-weight: 400; color: #616061; font-size: .78rem; margin-left: 6px; }
+    .slack .link { color: #1264a3; word-break: break-all; }
+    .unfurl { margin-top: 8px; border-left: 4px solid #dddedf; padding: 3px 0 3px 12px; }
+    .unfurl .site { font-size: .78rem; color: #616061; margin-bottom: 3px; display:flex; align-items:center; gap:6px; }
+    .unfurl .site .fav { width: 14px; height: 14px; border-radius: 3px; background:#4f7cff; flex:none; }
+    .unfurl .ttl { color: #1264a3; font-weight: 700; margin-bottom: 3px; }
+    .unfurl .desc { color: #1d1c1d; }
+    .unfurl .img { margin-top: 8px; width: 100%; max-width: 360px; border-radius: 8px; display: block; border: 1px solid #e3e3e3; }
+    .compare { margin-top: 8px; font-size: .8rem; color: var(--muted); }
+    details { margin-top: 26px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); padding: 6px 18px; }
+    summary { cursor: pointer; padding: 12px 0; font-weight: 600; }
+    details p, details li { color: var(--muted); font-size: .92rem; }
+    code { background: var(--panel-2); padding: 2px 6px; border-radius: 5px; font-size: .82rem; }
+    .warn { color: #ffb454; font-size: .82rem; margin-top: 8px; min-height: 1em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge"><span class="dot"></span> No login · nothing stored · free to share</div>
+      <h1>Make your booking link <span class="grad">look the part.</span></h1>
+      <p class="lede">Paste a Google Calendar or Calendly link, add a little branding, and get back a link that unfurls into a clean, professional card in Slack, iMessage, and LinkedIn — instead of Google's generic "Easier Time Management" box.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Builder -->
+      <section class="panel">
+        <h2>1 · Build your link</h2>
+        <div class="field">
+          <label for="url">Your booking link *</label>
+          <input id="url" type="url" placeholder="https://calendar.app.google/…  or  https://calendly.com/…" autocomplete="off" />
+          <div class="warn" id="warn"></div>
+        </div>
+        <div class="field">
+          <label for="title">Preview title</label>
+          <input id="title" type="text" maxlength="200" placeholder="Book 15 min with Robert · Crustdata" />
+        </div>
+        <div class="field">
+          <label for="desc">Preview description</label>
+          <textarea id="desc" maxlength="400" placeholder="Grab a time that works for you — happy to answer anything about Crustdata."></textarea>
+        </div>
+        <div class="field">
+          <label for="site">Brand / company name</label>
+          <input id="site" type="text" maxlength="120" placeholder="Crustdata" />
+        </div>
+        <div class="field">
+          <label for="img">Preview image URL (optional)</label>
+          <input id="img" type="url" placeholder="https://yourcompany.com/logo-or-headshot.png" autocomplete="off" />
+          <div class="hint">A headshot or logo, ~1200×630px works best. Leave blank for a clean text-only card.</div>
+        </div>
+      </section>
+
+      <!-- Output + preview -->
+      <section class="panel">
+        <h2>2 · Share this instead</h2>
+        <div class="out">
+          <div class="linkbox">
+            <input id="result" readonly value="" />
+            <button class="copy" id="copyBtn">Copy</button>
+          </div>
+          <div class="hint">Paste this anywhere. Clicking it still lands people on your real booking page instantly.</div>
+        </div>
+
+        <div class="preview-label">Live preview — how Slack will render it</div>
+        <div class="slack">
+          <div class="msg">
+            <div class="avatar"></div>
+            <div>
+              <div class="who">You <span>2:24 PM</span></div>
+              <div>if you're interested, here's my meeting link: <span class="link" id="p-url">yourdomain.com/l?…</span></div>
+              <div class="unfurl">
+                <div class="site"><span class="fav"></span><span id="p-site">Your brand</span></div>
+                <div class="ttl" id="p-title">Book a time</div>
+                <div class="desc" id="p-desc">Grab a slot that works for you.</div>
+                <img class="img" id="p-img" alt="" style="display:none" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="compare">↑ Yours. Compare to the generic Google Workspace card you get today.</div>
+      </section>
+    </div>
+
+    <details>
+      <summary>How does this work? (and is it safe?)</summary>
+      <p>When you share a raw <code>calendar.app.google</code> link, Slack fetches <em>Google's</em> page and shows <em>Google's</em> generic preview — you can't change it. CalCard gives you a link on your own domain that serves <em>your</em> preview tags to Slack's crawler, then instantly forwards the actual person to your real booking page.</p>
+      <ul>
+        <li><strong>Nothing is stored.</strong> Your title, description and image are encoded into the link itself — there's no database and no account.</li>
+        <li><strong>Your colleagues just use it.</strong> Anyone can open this page, paste their own link, and get their own branded version. No setup per person.</li>
+        <li><strong>Only <code>http(s)</code> destinations are allowed</strong>, so the redirect can't be abused.</li>
+      </ul>
+    </details>
+  </div>
+
+  <script>
+    var $ = function (id) { return document.getElementById(id); };
+    var els = {
+      url: $('url'), title: $('title'), desc: $('desc'), site: $('site'), img: $('img'),
+      result: $('result'), warn: $('warn'),
+      pUrl: $('p-url'), pTitle: $('p-title'), pDesc: $('p-desc'), pSite: $('p-site'), pImg: $('p-img')
+    };
+
+    function isHttp(u) {
+      try { var p = new URL(u); return p.protocol === 'http:' || p.protocol === 'https:'; }
+      catch (e) { return false; }
+    }
+
+    function build() {
+      var raw = els.url.value.trim();
+      var valid = raw && isHttp(raw);
+      els.warn.textContent = raw && !valid ? 'Enter a full link starting with https://' : '';
+
+      var title = els.title.value.trim() || 'Book a time';
+      var desc = els.desc.value.trim() || 'Grab a slot that works for you.';
+      var site = els.site.value.trim() || 'Book a call';
+      var img = els.img.value.trim();
+
+      // Live preview always reflects the fields.
+      els.pTitle.textContent = title;
+      els.pDesc.textContent = desc;
+      els.pSite.textContent = site;
+      if (img && isHttp(img)) {
+        els.pImg.src = img; els.pImg.style.display = 'block';
+        els.pImg.onerror = function () { els.pImg.style.display = 'none'; };
+      } else {
+        els.pImg.style.display = 'none';
+      }
+
+      if (!valid) { els.result.value = ''; els.pUrl.textContent = 'yourdomain.com/l?…'; return; }
+
+      var params = new URLSearchParams();
+      params.set('u', raw);
+      if (els.title.value.trim()) params.set('t', title);
+      if (els.desc.value.trim()) params.set('d', desc);
+      if (els.img.value.trim()) params.set('i', img);
+      if (els.site.value.trim()) params.set('s', site);
+
+      var link = location.origin + '/l?' + params.toString();
+      els.result.value = link;
+      els.pUrl.textContent = link.replace(/^https?:\/\//, '');
+    }
+
+    ['url', 'title', 'desc', 'site', 'img'].forEach(function (k) {
+      els[k].addEventListener('input', build);
+    });
+
+    $('copyBtn').addEventListener('click', function () {
+      if (!els.result.value) { build(); if (!els.result.value) return; }
+      var btn = this;
+      navigator.clipboard.writeText(els.result.value).then(function () {
+        btn.textContent = 'Copied ✓'; btn.classList.add('done');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600);
+      }).catch(function () {
+        els.result.select(); document.execCommand('copy');
+      });
+    });
+
+    build();
+  </script>
+</body>
+</html>
