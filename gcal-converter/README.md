@@ -45,10 +45,15 @@ cd gcal-converter
 npm test
 ```
 
-## Deploy to its own domain
+## Deploy to a working URL (free, ~2 min, no domain required)
 
-You need (a) a domain and (b) a free host that can run one serverless function.
-GitHub Pages alone can't do this — each link must serve its own preview tags.
+You need a free host that can run one serverless function. GitHub Pages alone
+can't do this — each link must serve its own preview tags.
+
+**You do NOT need to buy a domain to start.** Both hosts below give you a free,
+fully working web address (like `calcard.pages.dev`) the moment you deploy —
+that's the link you share with colleagues. A custom domain is an optional
+upgrade later.
 
 ### Option A — Cloudflare Pages (recommended, matches this repo layout)
 
@@ -60,8 +65,9 @@ GitHub Pages alone can't do this — each link must serve its own preview tags.
    - **Build command:** *(leave empty)*
    - **Build output directory:** `public`
    - Functions in `functions/` are detected automatically, so `/l` just works.
-4. **Custom domains → Set up a domain** and point your booking domain
-   (e.g. `book.yourcompany.com`) at it. Cloudflare handles DNS + HTTPS.
+4. Deploy. You now have a live URL like `https://calcard.pages.dev` — **share this.**
+5. *(Optional)* **Custom domains → Set up a domain** to point your own booking
+   domain (e.g. `book.yourcompany.com`) at it. Cloudflare handles DNS + HTTPS.
 
 Local preview: `npm run dev`.
 
