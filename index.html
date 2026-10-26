@@ -13,14 +13,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Daniel Ahmadizadeh</title>
-  <meta name="description" content="Daniel Ahmadizadeh helps founders find the one person whose problem they solve. Creator of Start With One, taught at Columbia and Stanford." />
+  <meta name="description" content="2x Y Combinator CEO who teaches entrepreneurship at Columbia and Stanford. Every great company starts with one customer who can’t live without it." />
   <meta name="theme-color" content="hsl(195,39%,32%)" />
 
   <!-- Social -->
   <meta property="og:url" content="https://danielahmadizadeh.com" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Daniel Ahmadizadeh" />
-  <meta property="og:description" content="Daniel Ahmadizadeh helps founders find the one person whose problem they solve. Creator of Start With One, taught at Columbia and Stanford." />
+  <meta property="og:description" content="2x Y Combinator CEO who teaches entrepreneurship at Columbia and Stanford. Every great company starts with one customer who can’t live without it." />
   <meta property="og:image" content="https://www.danielahmadizadeh.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -43,18 +43,27 @@
       --sat:39%;
       --txtL:24%;
       --bgL:97%;
-      --lead:1.56;
+      --lead:1.6;
 
       --txt: hsl(var(--hue) var(--sat) var(--txtL));
-      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 22%));
+      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 10%));
+      --accent: hsl(var(--hue) calc(var(--sat) + 10%) 32%);
       --bg: hsl(var(--hue) var(--sat) var(--bgL));
-      --mask: hsl(var(--hue) var(--sat) 32% / 0.55);
+      --tint: hsl(var(--hue) var(--sat) 90%);
+      --rule: hsl(var(--hue) var(--sat) var(--txtL) / 0.12);
 
-      --maxw: 42rem;
+      --maxw: 40rem;
+      --serif: "Erode-Variable", Georgia, serif;
     }
 
     @media (prefers-color-scheme:dark) {
-     :root{ --txtL:90%; --bgL:10%; }
+      :root{
+        --txtL:90%;
+        --bgL:10%;
+        --txt-weak: hsl(var(--hue) var(--sat) 68%);
+        --accent: hsl(var(--hue) calc(var(--sat) + 10%) 72%);
+        --tint: hsl(var(--hue) var(--sat) 22%);
+      }
     }
 
     * {
@@ -63,12 +72,14 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    html { scroll-behavior:smooth; }
+
     body {
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
       color:var(--txt);
       background:var(--bg);
-      padding:3.6rem 1.25rem;
+      padding:4.5rem 1.5rem 7rem;
       display:flex;
       justify-content:center;
       min-height:100vh;
@@ -79,91 +90,19 @@
       width:100%;
       max-width:var(--maxw);
       cursor:auto;
-    }
-
-    h1 { position:absolute; left:-9999px; }
-
-    .card{
-      display:flex;
-      gap:1rem;
-      align-items:flex-start;
-      margin-bottom:1.25rem;
-    }
-
-    .avatarWrap {
-      width:4rem;
-      height:4rem;
-      position:relative;
-      transition:transform .25s ease;
-    }
-
-    .avatarWrap:hover {
-      transform:translateY(-1px);
-    }
-
-    .avatar {
-      width:100%;
-      height:100%;
-      border-radius:50%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .avatarMask{
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      background:var(--mask);
-      mix-blend-mode:screen;
-      pointer-events:none;
-    }
-
-    .info{
       display:flex;
       flex-direction:column;
-      gap:0.22rem;
+      gap:4rem;
     }
 
-    .name{
-      font-weight:640;
-      font-size:1rem;
-      letter-spacing:-0.01em;
-    }
-
-    .role,.loc{
-      color:var(--txt-weak);
-      font-size:0.86rem;
-    }
-
-    .latest{
-      margin-top:0.18rem;
-      font-size:0.85rem;
-      color:var(--txt-weak);
-      display:flex;
-      gap:0.4rem;
-      flex-wrap:wrap;
-    }
-
-    .links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.9rem 1.25rem;
-      margin-top:0.6rem;
-    }
-
-    .links.secondary{
-      margin-top:0.25rem;
-      opacity:0.9;
-    }
-
+    /* Links */
     .link{
       position:relative;
       text-decoration:none;
       color:inherit;
-      font-weight:460;
+      font-weight:500;
       padding-bottom:2px;
     }
-
     .link:after{
       content:"";
       position:absolute;
@@ -174,136 +113,246 @@
       transform:scaleX(0);
       transition:transform .18s ease, opacity .18s ease;
     }
-
-    .link:hover:after{
-      opacity:.55;
-      transform:scaleX(1);
+    .link:hover:after{ opacity:.55; transform:scaleX(1); }
+    .ul{
+      color:inherit;
+      text-decoration:underline;
+      text-decoration-color:hsl(var(--hue) var(--sat) 50% / .35);
+      text-underline-offset:4px;
+      text-decoration-thickness:1px;
     }
+    .ul:hover{ color:var(--accent); text-decoration-color:currentColor; }
 
-    .rule{
-      height:1px;
-      background:currentColor;
-      opacity:.045;
-      margin:2.2rem 0;
+    /* Header */
+    .card{ display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; }
+    .avatarWrap{
+      width:5.5rem; height:5.5rem; flex:none;
+      border-radius:50%;
+      background:var(--tint);
+      overflow:hidden;
+      transition:transform .25s ease;
     }
-
-   .copy p{
-  font-family:"Erode-Variable";
-  font-weight:430;
-  font-size:1.125rem;
-  line-height:var(--lead);
-  letter-spacing:-0.015em;
-  margin:1.45rem 0;
-}
-
-    @media (max-width:480px){
-      .card{
-        flex-direction:column;
-        align-items:center;
-        text-align:center;
-        gap:0.9rem;
-      }
-      .info{ align-items:center; }
-      .links{ justify-content:center; }
+    .avatarWrap:hover{ transform:translateY(-1px); }
+    .avatar{ width:100%; height:100%; object-fit:cover; display:block; }
+    .info{ display:flex; flex-direction:column; gap:.4rem; flex:1 1 18rem; min-width:0; }
+    h1{ margin:0; font-size:1.5rem; font-weight:640; letter-spacing:-0.015em; }
+    .tagline{
+      margin:0;
+      font-family:var(--serif);
+      font-size:1.15rem;
+      line-height:1.5;
+      letter-spacing:-0.01em;
+      color:var(--txt-weak);
     }
+    .links{ display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin-top:.5rem; font-size:.95rem; }
+    .links .session{ color:var(--accent); font-weight:600; }
 
-    html { scroll-behavior:smooth; }
+    /* Facts */
+    .facts{ border-top:1px solid var(--rule); }
+    .fact{
+      display:flex; flex-wrap:wrap; justify-content:space-between; gap:.25rem 1.5rem;
+      padding:1.1rem 0;
+      border-bottom:1px solid var(--rule);
+    }
+    .fact strong{ font-size:1.05rem; font-weight:600; }
+    .fact span{ font-size:.95rem; color:var(--txt-weak); }
+    .press{ margin:.9rem 0 0; font-size:.88rem; color:var(--txt-weak); }
+
+    /* Sections */
+    section{ display:flex; flex-direction:column; gap:1.75rem; }
+    .label{
+      margin:0;
+      font-size:.8rem; font-weight:600;
+      letter-spacing:.08em; text-transform:uppercase;
+      color:var(--accent);
+    }
+    .question{
+      margin:0;
+      font-family:var(--serif);
+      font-style:italic;
+      font-size:1.85rem;
+      line-height:1.35;
+      letter-spacing:-0.015em;
+    }
+    .clip{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:1.25rem 1.75rem; }
+    .clip video{
+      width:13.75rem; aspect-ratio:9/16; flex:none;
+      border-radius:14px; background:#111; object-fit:cover;
+    }
+    .clipText{ flex:1 1 16rem; display:flex; flex-direction:column; gap:.9rem; padding-bottom:.25rem; }
+    .body{
+      margin:0;
+      font-family:var(--serif);
+      font-size:1.125rem;
+      line-height:var(--lead);
+      letter-spacing:-0.01em;
+    }
+    .small{ margin:0; font-size:.88rem; color:var(--txt-weak); }
+
+    .quotes{ gap:1.5rem; }
+    .quote{ margin:0; padding-left:1.25rem; border-left:2px solid var(--rule); display:flex; flex-direction:column; gap:.5rem; }
+    .quote blockquote{ margin:0; font-family:var(--serif); font-style:italic; font-size:1.15rem; line-height:1.55; letter-spacing:-0.01em; }
+    .quote figcaption{ font-size:.88rem; color:var(--txt-weak); }
+    .values{ gap:1rem; }
+    .purpose{
+      margin:0;
+      font-family:var(--serif);
+      font-size:1.3rem;
+      line-height:1.5;
+      letter-spacing:-0.01em;
+    }
+    .row{ margin:0; font-size:.95rem; }
+    .dot{ color:var(--txt-weak); padding:0 .3rem; }
+
+    /* Invitation */
+    .cta{
+      flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      gap:1rem 1.5rem;
+      padding:1.75rem 0;
+      border-top:1px solid var(--rule);
+      border-bottom:1px solid var(--rule);
+    }
+    .cta div{ display:flex; flex-direction:column; gap:.25rem; flex:1 1 16rem; }
+    .cta p{ margin:0; }
+    .ctaTitle{ font-size:1.1rem; font-weight:600; }
+    .ctaSub{ font-size:.95rem; color:var(--txt-weak); }
+    .button{
+      display:inline-flex; align-items:center; min-height:44px; padding:0 1.4rem;
+      border:1px solid currentColor; border-radius:999px;
+      color:inherit; text-decoration:none; font-size:.95rem; font-weight:600;
+      transition:background .18s ease, color .18s ease;
+    }
+    .button:hover{ background:var(--txt); color:var(--bg); }
+
+    @media (max-width:520px){
+      body{ padding-top:3rem; }
+      main{ gap:3.25rem; }
+      .question{ font-size:1.55rem; }
+      .clip video{ width:100%; max-width:18rem; }
+    }
   </style>
 </head>
 
 <body>
 
 <main>
-  <h1>Daniel Ahmadizadeh’s website</h1>
 
-  <section class="card">
+  <header class="card">
     <div class="avatarWrap">
-      <img class="avatar" src="profilepic.jpg" alt="Profile picture of Daniel Ahmadizadeh" />
-      <div class="avatarMask"></div>
+      <img class="avatar" src="headshot.png" alt="Daniel Ahmadizadeh" />
     </div>
-
     <div class="info">
-      <div class="name">Daniel Ahmadizadeh</div>
-      <div class="role">Startup builder and educator</div>
-      <div class="loc">Brooklyn, NY</div>
-
-      <div class="latest">
-        → Latest:
-        <a class="link" target="_blank"
-           href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one">
-          Founder interview in Mother of Success
-        </a>
-      </div>
-
-      <!-- Line 1 -->
-      <div class="links">
-        <a href="#" class="link copyEmail">Email</a>
-        <a class="link" target="_blank" href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle">TED</a>
+      <h1>Daniel Ahmadizadeh</h1>
+      <p class="tagline">Every great company starts with one customer who can’t live without it.</p>
+      <nav class="links" aria-label="Links">
+        <a href="mailto:daniel.ahmadizadeh@gmail.com" class="link copyEmail">Email</a>
         <a class="link" target="_blank" href="https://www.linkedin.com/in/danielahmadizadeh/">LinkedIn</a>
-        <a class="link" target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour">
-          Join a Start With One Session
-        </a>
-      </div>
+        <a class="link" target="_blank" href="https://startwithone.substack.com">Newsletter</a>
+        <a class="link" target="_blank" href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle">TED talk</a>
+        <a class="link" target="_blank" href="cv.pdf">CV</a>
+        <a class="link session" target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour">Office hours →</a>
+      </nav>
+    </div>
+  </header>
 
-      <!-- Line 2 -->
-      <div class="links secondary">
-        <a class="link" target="_blank"
-           href="https://dahmadizadeh.notion.site/Start-With-One-Moments-2a90eeb2be6080a983a7cc055b3f9916">
-          Moments
-        </a>
-        <a class="link" target="_blank" href="https://startwithone.substack.com">
-          Newsletter
-        </a>
-        <a class="link" target="_blank"
-           href="https://www.youtube.com/@OneQuestionReflections">
-          One Question
-        </a>
+  <div class="facts" aria-label="Background">
+    <div class="fact">
+      <strong>2x Y Combinator CEO</strong>
+      <span>Riley · PersistIQ (acquired)</span>
+    </div>
+    <div class="fact">
+      <strong>Teaches entrepreneurship at <a class="ul" target="_blank" href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336">Columbia</a> &amp; <a class="ul" target="_blank" href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b">Stanford</a></strong>
+      <span><a class="ul" target="_blank" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe">500+ students taught</a></span>
+    </div>
+    <div class="fact">
+      <strong>Leads growth at <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> (YC)</strong>
+      <span>$600K → $14M ARR since Feb 2025</span>
+    </div>
+    <div class="fact">
+      <strong>First investor in <a class="ul" target="_blank" href="https://www.forbes.com/sites/frederickdaso/2020/11/06/motion-a-y-combinator-productivity-startup-keeps-you-moving-in-google-chrome/">Motion</a> after YC</strong>
+      <span>Last valued at $550M</span>
+    </div>
+    <div class="fact">
+      <strong>Coach to YC founders</strong>
+      <span>Angle Health, Unthread, Pipekit, and more</span>
+    </div>
+    <p class="press">MBA, Columbia Business School · <a class="ul" target="_blank" href="https://www.ted.com/talks/daniel_ahmadizadeh_the_art_of_hustle">TED speaker</a> · Featured in WSJ, The Today Show, and NPR · <a class="ul" target="_blank" href="https://www.mother-of-success.com/blogs/daniel-ahmadizadeh-start-with-one">Latest interview</a></p>
+  </div>
+
+  <section>
+    <p class="label">The one question I ask every founder</p>
+    <p class="question">What’s the name of one human being whose problem you’ve meaningfully solved?</p>
+    <div class="clip">
+      <video controls playsinline preload="none" poster="swo-poster.jpg" aria-label="Daniel asking the Start With One question on the Replit Showcase">
+        <source src="swo-clip.mp4" type="video/mp4" />
+        <a href="https://youtu.be/PXLTgW48TGo">Watch on YouTube</a>
+      </video>
+      <div class="clipText">
+        <p class="body">It’s the heart of <a class="ul" target="_blank" href="https://dahmadizadeh.notion.site/Start-With-One-08d904bb937a4737859e6ddaabdf5a23">Start With One</a>, the framework I teach. When anyone can build anything, the person is the proof.</p>
+        <p class="small">Watch me ask it · Featured on the <a class="ul" target="_blank" href="https://youtu.be/PXLTgW48TGo">Replit Showcase</a>, Oct 2026</p>
       </div>
     </div>
   </section>
 
-  <div class="rule"></div>
+  <section class="quotes">
+    <p class="label">In their words</p>
+    <figure class="quote">
+      <blockquote>“Your class truly made an impact on me, so much that I made my yearbook quote ‘start with one.’”</blockquote>
+      <figcaption>Former Columbia student, now at Indiana University’s Kelley School of Business</figcaption>
+    </figure>
+    <figure class="quote">
+      <blockquote>“One of his superpowers is customer conversations. He builds trust fast and is world class at extracting signal from users and turning it into revenue and product clarity.”</blockquote>
+      <figcaption>Co-founder, Crustdata (YC)</figcaption>
+    </figure>
+    <figure class="quote">
+      <blockquote>“He’s dramatically impacted my life as a CEO. It’s likely we wouldn’t be as far as we are without Daniel’s help.”</blockquote>
+      <figcaption>CEO, Haystack (YC)</figcaption>
+    </figure>
+    <p class="row"><a class="ul" target="_blank" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe">More from students and founders</a></p>
+  </section>
 
-  <section class="copy">
+  <section class="values">
+    <p class="label">What I live by</p>
+    <p class="purpose">To live fully, love deeply, and help others become the best versions of themselves.</p>
+    <p class="small">Based in Brooklyn. Speaks English, French, Persian, and Spanish.</p>
+    <p class="row">
+      <a class="ul" target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373">My values</a><span class="dot">·</span><a class="ul" target="_blank" href="https://dahmadizadeh.notion.site/Travel-2d00eeb2be6080089f1ee0b2a073d547">Travel</a><span class="dot">·</span><a class="ul" target="_blank" href="https://dahmadizadeh.notion.site/Start-With-One-Moments-2a90eeb2be6080a983a7cc055b3f9916">Moments</a><span class="dot">·</span><a class="ul" target="_blank" href="https://www.youtube.com/@OneQuestionReflections">One Question</a>
+    </p>
+  </section>
 
-    <p>I'm Daniel. I build startups, teach entrepreneurship, and ask every founder I meet one question:</p>
-
-    <p><em>In the months or years you've worked on your project, whose problem have you solved?<br>What's their name?</em></p>
-
-    <p>That's the question behind <a target="_blank" href="https://dahmadizadeh.notion.site/Start-With-One-08d904bb937a4737859e6ddaabdf5a23?pvs=4S" class="link">Start With One</a>, a framework I teach at Columbia, Stanford, and programs around the world. My mission is to help founders find the one person whose problem they solve, before they build for millions.</p>
-
-    <p>Founders spend years building things no one needs, and most entrepreneurship classes still teach theory. I did it too. Helping one real person is how great companies start, and how founders become better people.</p>
-
-    <p>Currently growing <a target="_blank" href="https://crustdata.com/" class="link">Crustdata</a>, a Y Combinator startup, from $600K to $12M ARR since 2025. Previously led two Y Combinator–backed startups as CEO and was the first investor in <a target="_blank" href="https://www.forbes.com/sites/frederickdaso/2020/11/06/motion-a-y-combinator-productivity-startup-keeps-you-moving-in-google-chrome/" class="link">Motion</a> after their YC batch, last valued at $550M.</p>
-
-    <p>At <a target="_blank" href="https://www.notion.so/dahmadizadeh/Columbia-University-4f6d57db074c4003bf4a6e882e96f336" class="link">Columbia University</a>, where I earned my MBA, and <a target="_blank" href="https://www.notion.so/dahmadizadeh/Stanford-University-f5da4e785e64417287229812fa89991b" class="link">Stanford University</a>, every student ends at Demo Day, sharing the story of a specific human being whose problem they solved.</p>
-
-    <p>When anyone can build anything, the person is the proof. 500+ students and founders have used the framework to launch their ventures. Read their stories <a target="_blank" href="https://dahmadizadeh.notion.site/Testimonials-from-Students-YC-46591cb03ac844dc8c5ff03d8632c8fe" class="link">here</a>, or join my weekly <a target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour" class="link">Start With One session</a>.</p>
-
-    <p>My work has been featured in WSJ, The Today Show, and NPR, and I was a <a target="_blank" href="https://www.ted.com/about/programs-initiatives/ted-residency" class="link">TED Resident</a>.</p>
-
-    <p>Outside of work, I focus on health, family, and <a target="_blank" href="https://dahmadizadeh.notion.site/Travel-2d00eeb2be6080089f1ee0b2a073d547?source=copy_link" class="link">traveling</a>. Here are my <a target="_blank" href="https://dahmadizadeh.notion.site/Values-5bf24fb3f12040c38fec6f70f1f67373" class="link">values</a> and a preview of the <a target="_blank" href="https://docs.google.com/document/d/1P5fuVIUWVAaUqZTjzxy4Wwg81TsaX8kL7pT7_oocJWw/edit" class="link">book</a> I'll publish next year.</p>
-
+  <section class="cta">
+    <div>
+      <p class="ctaTitle">Bring your one person.</p>
+      <p class="ctaSub">Start With One office hours, Saturdays at 10am ET on Zoom.</p>
+    </div>
+    <a class="button" target="_blank" href="https://calendly.com/daniel-ahmadizadeh/start-with-one-office-hour">Save your spot →</a>
   </section>
 
 </main>
 
 <script>
+  // Click anywhere (not a link or the video) to shift the site's color
   document.body.addEventListener("click", e => {
-    if (e.target.closest("a")) return;
+    if (e.target.closest("a, video")) return;
     const h = Math.floor(Math.random() * 360);
     document.documentElement.style.setProperty("--hue", h);
-    localStorage.setItem("--hue", h);
+    try { localStorage.setItem("--hue", h); } catch (err) {}
   });
 
-  const saved = localStorage.getItem("--hue");
-  if (saved) {
-    document.documentElement.style.setProperty("--hue", saved);
-  }
+  try {
+    const saved = localStorage.getItem("--hue");
+    if (saved) document.documentElement.style.setProperty("--hue", saved);
+  } catch (err) {}
 
-  document.querySelector(".copyEmail").addEventListener("click", e => {
+  // Email: copy the address and confirm; falls back to opening mail if copying isn't allowed
+  const emailLink = document.querySelector(".copyEmail");
+  emailLink.addEventListener("click", e => {
+    if (!navigator.clipboard) return;
     e.preventDefault();
-    navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com");
+    navigator.clipboard.writeText("daniel.ahmadizadeh@gmail.com").then(() => {
+      emailLink.textContent = "Copied!";
+      setTimeout(() => { emailLink.textContent = "Email"; }, 1600);
+    }).catch(() => { window.location.href = emailLink.href; });
   });
 </script>
 
