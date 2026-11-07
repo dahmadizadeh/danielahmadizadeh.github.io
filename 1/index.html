@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFK01CM5JK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZFK01CM5JK');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>An experiment: 5 founders, 90 days · Daniel Ahmadizadeh</title>
+  <meta name="description" content="Before you hire a seller, a tool, or an agency, find your One. Five founders, 90 days, one on one." />
+  <meta name="theme-color" content="hsl(195,39%,32%)" />
+
+  <meta property="og:url" content="https://danielahmadizadeh.com/1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="An experiment: 5 founders, 90 days" />
+  <meta property="og:description" content="Before you hire a seller, a tool, or an agency, find your One." />
+  <meta property="og:image" content="https://www.danielahmadizadeh.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" href="https://www.danielahmadizadeh.com/favicon.png" />
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+  <style>
+    @font-face{
+      font-family:"Erode-Variable";
+      src:url("https://www.danielahmadizadeh.com/fonts/Erode-Variable.woff2") format("woff2"),
+          url("https://www.danielahmadizadeh.com/fonts/Erode-Variable.woff") format("woff");
+      font-weight:400 700;
+      font-display:swap;
+    }
+
+    :root{
+      --hue:195; --sat:39%; --txtL:24%; --bgL:97%;
+      --txt: hsl(var(--hue) var(--sat) var(--txtL));
+      --txt-weak: hsl(var(--hue) var(--sat) calc(var(--txtL) + 12%));
+      --accent: hsl(var(--hue) calc(var(--sat) + 10%) 32%);
+      --bg: hsl(var(--hue) var(--sat) var(--bgL));
+      --tint: hsl(var(--hue) var(--sat) 90%);
+      --card: #fff;
+      --rule: hsl(var(--hue) var(--sat) var(--txtL) / 0.12);
+      --serif: "Erode-Variable", Georgia, serif;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --txtL:90%; --bgL:10%;
+        --txt-weak: hsl(var(--hue) var(--sat) 68%);
+        --accent: hsl(var(--hue) calc(var(--sat) + 10%) 72%);
+        --tint: hsl(var(--hue) var(--sat) 22%);
+        --card: hsl(var(--hue) var(--sat) 14%);
+      }
+    }
+
+    *{ box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+      color:var(--txt); background:var(--bg);
+      padding:3.5rem 1.25rem 6rem;
+      display:flex; justify-content:center; min-height:100vh;
+      cursor:pointer;
+    }
+    main{ width:100%; max-width:38rem; cursor:auto; display:flex; flex-direction:column; gap:2.5rem; }
+
+    a{ color:inherit; }
+    .ul{ text-decoration:underline; text-decoration-color:hsl(var(--hue) var(--sat) 50% / .35); text-underline-offset:3px; }
+    .ul:hover{ color:var(--accent); }
+
+    /* Who */
+    .who{ display:flex; align-items:center; gap:.9rem; text-decoration:none; }
+    .who img{ width:3rem; height:3rem; border-radius:50%; object-fit:cover; background:var(--tint); }
+    .who strong{ display:block; font-weight:620; }
+    .who span{ font-size:.88rem; color:var(--txt-weak); }
+
+    /* The email */
+    .email{
+      background:var(--card);
+      border:1px solid var(--rule);
+      border-radius:14px;
+      box-shadow:0 1px 2px hsl(var(--hue) 30% 20% / .04), 0 12px 32px -12px hsl(var(--hue) 30% 20% / .14);
+      overflow:hidden;
+    }
+    .meta{ padding:1rem 1.4rem; border-bottom:1px solid var(--rule); font-size:.88rem; display:grid; gap:.3rem; }
+    .meta div{ display:flex; gap:.6rem; }
+    .meta b{ width:3.6rem; flex:none; font-weight:500; color:var(--txt-weak); }
+    .meta .subj{ font-weight:620; color:var(--txt); }
+    .msg{ padding:1.4rem 1.4rem 1.6rem; font-size:1.02rem; line-height:1.62; }
+    .msg p{ margin:0 0 1rem; }
+    .msg ul{ margin:0 0 1rem; padding-left:1.15rem; }
+    .msg li{ margin:.25rem 0; }
+    .msg .months{ list-style:none; padding:0; border-left:2px solid var(--rule); padding-left:.9rem; }
+    .msg .months b{ font-weight:620; }
+    .sig{ margin-top:1.25rem; display:flex; align-items:center; gap:.7rem; }
+    .sig img{ width:2.25rem; height:2.25rem; border-radius:50%; object-fit:cover; background:var(--tint); }
+    .sig span{ font-size:.85rem; color:var(--txt-weak); }
+
+    .bar{ display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+          padding:1rem 1.4rem; border-top:1px solid var(--rule); background:hsl(var(--hue) var(--sat) var(--bgL) / .5); }
+    .spots{ display:inline-flex; align-items:center; gap:.5rem; font-size:.85rem; font-weight:600; color:var(--accent); }
+    .spots i{ width:.5rem; height:.5rem; border-radius:50%; background:var(--accent); display:inline-block; }
+    .button{
+      display:inline-flex; align-items:center; gap:.4rem; min-height:42px; padding:0 1.3rem;
+      border-radius:999px; background:var(--txt); color:var(--bg);
+      text-decoration:none; font-size:.95rem; font-weight:600;
+    }
+    .button:hover{ background:var(--accent); }
+
+    /* Quotes */
+    .label{ margin:0 0 .25rem; font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+    .quotes{ display:flex; flex-direction:column; gap:1.25rem; }
+    .q{ display:flex; gap:.9rem; align-items:flex-start; margin:0; }
+    .avatar{
+      width:2.75rem; height:2.75rem; flex:none; border-radius:50%;
+      background:var(--tint); display:grid; place-items:center;
+      font-size:.85rem; font-weight:600; color:var(--accent); overflow:hidden;
+    }
+    .avatar{ position:relative; }
+    .avatar img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+    .q blockquote{ margin:0 0 .3rem; font-family:var(--serif); font-style:italic; font-size:1.08rem; line-height:1.5; }
+    .q figcaption{ font-size:.85rem; color:var(--txt-weak); display:flex; flex-wrap:wrap; align-items:center; gap:.4rem .6rem; }
+    .tag{ font-size:.72rem; font-weight:600; letter-spacing:.02em; color:var(--accent); background:var(--tint); padding:.15rem .55rem; border-radius:999px; }
+
+
+    .photos .grid{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+    .photos figure{ margin:0; display:flex; flex-direction:column; gap:.4rem; }
+    .photos img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:10px; display:block; background:var(--tint); }
+    .photos figcaption{ font-size:.8rem; color:var(--txt-weak); line-height:1.35; }
+    .result{ margin:2rem 0 0; font-size:1.05rem; line-height:1.5; }
+    .result b{ color:var(--accent); font-weight:650; }
+    .pull{ margin:.9rem 0 0; padding-left:1.25rem; border-left:2px solid var(--accent); }
+    .pull blockquote{ margin:0 0 .3rem; font-family:var(--serif); font-style:italic; font-size:1.15rem; line-height:1.5; }
+    .who-cap{ display:flex; align-items:center; gap:.6rem; }
+    .avatar.sm{ width:2rem; height:2rem; font-size:.7rem; }
+    .pull figcaption{ font-size:.85rem; color:var(--txt-weak); }
+    .photos .label{ margin-bottom:.9rem; }
+    @media (max-width:520px){ .photos .grid{ gap:.6rem; } }
+    .fine{ margin:0; font-size:.85rem; color:var(--txt-weak); }
+
+    @media (max-width:520px){
+      body{ padding-top:2rem; }
+      .msg, .meta, .bar{ padding-left:1.1rem; padding-right:1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <a class="who" href="/">
+    <img src="https://www.danielahmadizadeh.com/headshot.png" alt="Daniel Ahmadizadeh" onerror="this.style.visibility='hidden'" />
+    <div>
+      <strong>Daniel Ahmadizadeh</strong>
+      <span>2x YC CEO · 4 businesses $0 → $1M · Teaches at Columbia &amp; Stanford</span>
+    </div>
+  </a>
+
+  <article class="email">
+    <div class="meta">
+      <div><b>From</b> Daniel Ahmadizadeh</div>
+      <div><b>To</b> B2B founders who’ve raised but haven’t found PMF</div>
+      <div><b>Subject</b> <span class="subj">An experiment: 5 founders, 90 days</span></div>
+    </div>
+
+    <div class="msg">
+      <p>Hey,</p>
+      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment with five founders.</p>
+      <p><b>If you’re pre-PMF, you’re pre-GTM.</b> Most founders skip that step. They raise, then hire a seller, a tool, or an agency. Meetings happen, but nothing compounds.</p>
+      <p>I learned this the hard way. My YC company went from $5K to $85K a month during the batch, then shut down. I forgot about Barry Jenkins, our champion in Virginia Beach. Most founders don’t know who their Barry is.</p>
+      <p>Last month, a founder’s whole website said “manufacturing.” I asked who’d be most pissed if he shut down. He named an operator at a daycare. That’s his new experiment!</p>
+      <p>I’ll be your <b>pre-GTM cofounder</b> for 90 days, and get you ready for GTM:</p>
+      <ul class="months">
+        <li><b>Weeks 1–2:</b> find your One.</li>
+        <li><b>Weeks 3–8:</b> test it with new positioning, emails, and calls.</li>
+        <li><b>Weeks 9–12:</b> get GTM-ready, so your first seller, tool, or agency is aimed at the right customer.</li>
+      </ul>
+      <p>Weekly 1:1s with me, no handoffs. If it helps, I’ll fly out to meet your One. Month to month, no equity.</p>
+      <p>My hope is that by month three, I’m asking to invest (if you’ll have me).</p>
+      <p><b>I’m taking five founders, and applications close November 30.</b> To apply, answer one question: who would be most pissed if you shut down tomorrow?</p>
+      <div class="sig">
+        <img src="https://www.danielahmadizadeh.com/headshot.png" alt="" onerror="this.style.visibility='hidden'" />
+        <div><strong>Daniel</strong><br /><span>Before you hire sales, find your One.</span></div>
+      </div>
+    </div>
+
+    <div class="bar">
+      <span class="spots"><i></i>5 of 5 spots open · Closes Nov 30</span>
+      <a class="button" href="mailto:daniel.ahmadizadeh@gmail.com?subject=Application%3A%205%20founders%2C%2090%20days&body=Company%3A%0AWebsite%3A%0AWhat%20you%27ve%20raised%3A%0AWho%20would%20be%20most%20pissed%20if%20you%20shut%20down%20tomorrow%2C%20and%20why%3F%0A">Apply →</a>
+    </div>
+  </article>
+
+  <section class="photos">
+    <p class="label">Wherever they needed me</p>
+    <div class="grid">
+      <figure><img src="krokit.jpg" alt="Daniel with the Krokit team in North Carolina" /><figcaption>Krokit · Meeting their One in North Carolina</figcaption></figure>
+      <figure><img src="haystack.jpg" alt="Daniel with the Haystack founders in London" /><figcaption>Haystack · Team retreat in London</figcaption></figure>
+      <figure><img src="pipekit.jpg" alt="Daniel with Pipekit's founders in New York" /><figcaption>Pipekit · Dinner in New York</figcaption></figure>
+      <figure><img src="crustdata.jpg" alt="Daniel with Chris Pisarski at a Crustdata booth" /><figcaption>Crustdata · On the conference floor with Chris</figcaption></figure>
+    </div>
+    <p class="result"><b>17x revenue per customer.</b> Krokit was near shutdown. We found a new persona, their TAM grew by millions, and they went on to exit.</p>
+    <figure class="pull">
+      <blockquote>“I learned the importance of uncovering a true pain point for one person before building a solution. We went from running into brick walls with no revenue prospects to having something exciting and viable.”</blockquote>
+      <figcaption class="who-cap"><span class="avatar sm"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/83c842314a0ba7776614ebfb2c08c84926637958852a261fa6f189b461fed735.jpg" alt="" onerror="this.remove()" />PB</span>Patrick Buckley · Founder &amp; CEO, Krokit (exited)</figcaption>
+    </figure>
+  </section>
+
+  <section class="quotes">
+    <p class="label">Some of the YC founders I’ve worked with</p>
+    <figure class="q">
+      <div class="avatar"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/2c488a6a4d5e83921cb7ff547d8783907a24771101f233ffd3438b71009f0706.jpg" alt="" onerror="this.remove()" />JC</div>
+      <div>
+        <blockquote>“Hiring Daniel is like a cheat code. You’re basically hiring another founder: one who doesn’t need the title, has a wealth of experience, is all-in for your success, and ramps in days, not months. He helped us from our Seed round to $1M+ ARR.”</blockquote>
+        <figcaption>Julian Colina · CEO, Haystack (YC)<span class="tag">Coach → Angel investor</span></figcaption>
+      </div>
+    </figure>
+    <figure class="q">
+      <div class="avatar"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/3ca5113b0414551567f85aa794d279c18bb0d2f95fdd235f852121496b7f4c84.jpg" alt="" onerror="this.remove()" />CP</div>
+      <div>
+        <blockquote>“Daniel was our first GTM hire after YC and instrumental in scaling us from $600K to $14M ARR in 18 months. He’s world class at extracting signal from users and turning it into revenue.”</blockquote>
+        <figcaption>Chris Pisarski · Co-founder, Crustdata (YC)</figcaption>
+      </div>
+    </figure>
+    <figure class="q">
+      <div class="avatar"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/237dd59d7be09f63c1c923b1d04e0f7c6a0cc72fa48f27b40d540b67c490bd15.jpg" alt="" onerror="this.remove()" />CU</div>
+      <div>
+        <blockquote>“His relentless pursuit of focus is invaluable for us. We say ‘no’ to more with increasing ease.”</blockquote>
+        <figcaption>Caelan Urquhart · CEO, Pipekit (YC)<span class="tag">Coach → Angel investor</span></figcaption>
+      </div>
+    </figure>
+    <figure class="q">
+      <div class="avatar"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/0635393441fd14b59bd9faee0c3dcaeee82b68a456ea93f34c290822926981e6.jpg" alt="" onerror="this.remove()" />AR</div>
+      <div>
+        <blockquote>“He was instrumental in helping us close our largest customer, a six-figure deal. I ran all the emails, Zoom agendas, and messages through him.”</blockquote>
+        <figcaption>Advait Ruia · CEO, SuperTokens (YC)<span class="tag">Coach → Angel investor</span></figcaption>
+      </div>
+    </figure>
+  </section>
+
+  <p class="fine">I’ll share what I learn on the <a class="ul" target="_blank" href="https://startwithone.substack.com">newsletter</a>.</p>
+
+</main>
+
+<script>
+  document.body.addEventListener("click", e => {
+    if (e.target.closest("a")) return;
+    const h = Math.floor(Math.random() * 360);
+    document.documentElement.style.setProperty("--hue", h);
+    try { localStorage.setItem("--hue", h); } catch (err) {}
+  });
+  try {
+    const saved = localStorage.getItem("--hue");
+    if (saved) document.documentElement.style.setProperty("--hue", saved);
+  } catch (err) {}
+</script>
+</body>
+</html>
