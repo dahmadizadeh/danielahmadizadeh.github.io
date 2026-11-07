@@ -187,7 +187,7 @@
 
     <div class="msg">
       <p id="greet">Hey,</p>
-      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment: five founders, only from YC, South Park Commons, Collide, and Orange Collective.</p>
+      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment: five founders, only from YC, South Park Commons, Collide, and Orange Collective.<span id="extra"></span></p>
       <p class="kr">Keep reading if:</p>
       <ul class="keep">
         <li>You’ve raised, you have users, and growth isn’t where you expected.</li>
@@ -287,8 +287,10 @@
 <script>
   // Personalized greeting: /1/?for=yc, ?for=spc, ?for=collide, ?for=oc
   try {
-    const g = { yc: "YC", spc: "SPC", collide: "Collide", oc: "Orange Collective" }[(new URLSearchParams(location.search).get("for") || "").toLowerCase()];
-    if (g) document.getElementById("greet").textContent = "Hey " + g + " founders,";
+    const k = (new URLSearchParams(location.search).get("for") || "").toLowerCase();
+    const greet = { yc: "Hey YC founders,", spc: "Hey SPC founders,", collide: "Hey Collide founders,", oc: "Hey OC fam," }[k];
+    if (greet) document.getElementById("greet").textContent = greet;
+    if (k === "oc") document.getElementById("extra").textContent = " (I’m also an OC LP!)";
   } catch (e) {}
 </script>
 </body>
