@@ -171,8 +171,8 @@
     </div>
 
     <div class="msg">
-      <p>Hey,</p>
-      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment with five founders.</p>
+      <p id="greet">Hey,</p>
+      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment with five founders, and for now I’m only working with founders from YC, South Park Commons, and Collide.</p>
       <p><b>If you’re pre-PMF, you’re pre-GTM.</b> Most founders skip that step. They raise, then hire a seller, buy a tool, or sign an agency. Meetings happen, but nothing compounds.</p>
       <p>I learned this the hard way. My YC company went from $5K to $85K a month during the batch, then shut down. I forgot about Barry Jenkins, our champion in Virginia Beach. Most founders don’t know who their Barry is.</p>
       <p>Last month, a founder’s whole website said “manufacturing.” I asked who’d be most pissed if he shut down. He named an operator at a daycare. That’s his new experiment!</p>
@@ -262,6 +262,13 @@
     const saved = localStorage.getItem("--hue");
     if (saved) document.documentElement.style.setProperty("--hue", saved);
   } catch (err) {}
+</script>
+<script>
+  // Personalized greeting: /1/?for=yc, ?for=spc, ?for=collide
+  try {
+    const g = { yc: "YC", spc: "SPC", collide: "Collide" }[(new URLSearchParams(location.search).get("for") || "").toLowerCase()];
+    if (g) document.getElementById("greet").textContent = "Hey " + g + " founders,";
+  } catch (e) {}
 </script>
 </body>
 </html>
