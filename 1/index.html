@@ -143,6 +143,12 @@
     .pull{ margin:0; padding-top:1rem; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:.6rem; }
     .pull blockquote{ margin:0; font-family:var(--serif); font-style:italic; font-size:1.08rem; line-height:1.5; }
     .pull figcaption{ font-size:.85rem; color:var(--txt-weak); }
+    .proof{ display:flex; align-items:center; gap:.75rem; margin:-1.25rem 0 -.75rem; font-size:.82rem; line-height:1.4; color:var(--txt-weak); text-decoration:none; }
+    .proof:hover{ color:var(--accent); }
+    .stack{ display:flex; flex:none; }
+    .avatar.xs{ width:1.75rem; height:1.75rem; font-size:.6rem; border:2px solid var(--bg); margin-left:-.45rem; }
+    .avatar.xs:first-child{ margin-left:0; }
+    html{ scroll-behavior:smooth; }
     .who-cap{ display:flex; align-items:center; gap:.6rem; }
     .avatar.sm{ width:2rem; height:2rem; font-size:.7rem; }
     .photos .label{ margin-bottom:1rem; }
@@ -165,6 +171,11 @@
       <strong>Daniel Ahmadizadeh</strong>
       <span>2x YC CEO · 4 businesses $0 → $1M · Teaches at Columbia &amp; Stanford</span>
     </div>
+  </a>
+
+  <a class="proof" href="#proof">
+    <span class="stack"><span class="avatar xs"><img src="julian.jpg" alt="" onerror="this.remove()" />JC</span><span class="avatar xs"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/3ca5113b0414551567f85aa794d279c18bb0d2f95fdd235f852121496b7f4c84.jpg" alt="" onerror="this.remove()" />CP</span><span class="avatar xs"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/237dd59d7be09f63c1c923b1d04e0f7c6a0cc72fa48f27b40d540b67c490bd15.jpg" alt="" onerror="this.remove()" />CU</span><span class="avatar xs"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/0635393441fd14b59bd9faee0c3dcaeee82b68a456ea93f34c290822926981e6.jpg" alt="" onerror="this.remove()" />AR</span><span class="avatar xs"><img src="https://crustdata-media.s3.us-east-2.amazonaws.com/person/83c842314a0ba7776614ebfb2c08c84926637958852a261fa6f189b461fed735.jpg" alt="" onerror="this.remove()" />PB</span></span>
+    <span>What founders from Haystack, Crustdata, Pipekit, SuperTokens &amp; Krokit&nbsp;say&nbsp;↓</span>
   </a>
 
   <article class="email">
@@ -217,7 +228,7 @@
     </div>
   </section>
 
-  <section class="case">
+  <section class="case" id="proof">
     <p class="result"><b>17x revenue per customer.</b> Krokit was near shutdown, selling financial data to franchise owners. We found what those owners would actually pay for: bookkeeping. Their TAM grew by millions, and Krokit went on to exit.</p>
     <figure class="pull">
       <blockquote>“I learned the importance of uncovering a true pain point for one person before building a solution. We went from running into brick walls with no revenue prospects to having something exciting and viable.”</blockquote>
