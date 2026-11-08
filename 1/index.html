@@ -187,7 +187,7 @@
 
     <div class="msg">
       <p id="greet">Hey,</p>
-      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment: five founders, only from YC, South Park Commons, Collide, and Orange Collective.<span id="extra"></span></p>
+      <p>I helped grow <a class="ul" target="_blank" href="https://crustdata.com/">Crustdata</a> from $600K to $14M ARR in 18 months. Now I’m running an experiment: five founders, <span id="who">only from YC, South Park Commons, Collide, and Orange Collective</span>.<span id="extra"></span></p>
       <p class="kr">Keep reading if:</p>
       <ul class="keep">
         <li>You’ve raised, you have users, and growth isn’t where you expected.</li>
@@ -285,12 +285,19 @@
   } catch (err) {}
 </script>
 <script>
-  // Personalized greeting: /1/?for=yc, ?for=spc, ?for=collide, ?for=oc
+  // Personalized greeting: /1/?for=yc, ?for=spc, ?for=collide, ?for=oc (+ investor versions below)
   try {
     const k = (new URLSearchParams(location.search).get("for") || "").toLowerCase();
     const greet = { yc: "Hey YC founders,", spc: "Hey SPC founders,", collide: "Hey Collide founders,", oc: "Hey OC fam," }[k];
     if (greet) document.getElementById("greet").textContent = greet;
     if (k === "oc") document.getElementById("extra").textContent = " (I’m also an OC LP!)";
+    // Investor-forwarded versions: /1/?for=firstround, ?for=bcv, ?for=af
+    const inv = {
+      firstround: ["Hey First Round founders,", "and a couple of spots are for First Round companies"],
+      bcv: ["Hey BCV founders,", "and a couple of spots are for Bain Capital Ventures companies"],
+      af: ["Hey,", "by referral only, and you were referred"]
+    }[k];
+    if (inv) { document.getElementById("greet").textContent = inv[0]; document.getElementById("who").textContent = inv[1]; }
   } catch (e) {}
 </script>
 </body>
