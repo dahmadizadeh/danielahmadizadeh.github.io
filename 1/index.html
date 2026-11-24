@@ -291,10 +291,11 @@
     const greet = { yc: "Hey YC founders,", spc: "Hey SPC founders,", collide: "Hey Collide founders,", oc: "Hey OC fam," }[k];
     if (greet) document.getElementById("greet").textContent = greet;
     if (k === "oc") document.getElementById("extra").textContent = " (I’m also an OC LP!)";
-    // Investor-forwarded versions: /1/?for=firstround, ?for=bcv, ?for=af
+    // Investor-forwarded versions: /1/?for=firstround, ?for=bcv, ?for=unusual, ?for=af
     const inv = {
       firstround: ["Hey First Round founders,", "and a couple of spots are for First Round companies"],
       bcv: ["Hey BCV founders,", "and a couple of spots are for Bain Capital Ventures companies"],
+      unusual: ["Hey Unusual founders,", "and a couple of spots are for Unusual Ventures companies"],
       af: ["Hey,", "by referral only, and you were referred"]
     }[k];
     if (inv) { document.getElementById("greet").textContent = inv[0]; document.getElementById("who").textContent = inv[1]; }
